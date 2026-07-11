@@ -8,18 +8,22 @@
   <title>CloudStack Workshop · Websites & Deployment</title>
   <style>
     :root {
-      --bg: #0b1220;
-      --bg-soft: #121a2b;
-      --card: #162033;
-      --line: rgba(255, 255, 255, 0.08);
-      --text: #e8eefc;
-      --muted: #9aa8c7;
-      --brand: #5b8cff;
-      --brand-2: #37d6c5;
-      --accent: #f5c542;
-      --ok: #3dd68c;
+      /* Light comfort palette inspired by huggspace.keyouhow987.ccwu.cc (--light #e8f5e9) */
+      --bg: #e8f5e9;
+      --bg-soft: #f3faf4;
+      --card: #ffffff;
+      --line: rgba(27, 94, 32, 0.12);
+      --text: #333333;
+      --muted: #5f6b66;
+      --brand: #2e7d32;
+      --brand-2: #4caf50;
+      --brand-soft: #8bc34a;
+      --brand-dark: #1b5e20;
+      --accent: #f9a825;
+      --ok: #2e7d32;
+      --nav: linear-gradient(90deg, #2e7d32, #4caf50);
       --radius: 16px;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      --shadow: 0 10px 28px rgba(27, 94, 32, 0.08);
       --max: 1080px;
     }
 
@@ -30,12 +34,13 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
         "Microsoft YaHei", sans-serif;
       background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(91, 140, 255, 0.22), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(55, 214, 197, 0.12), transparent 55%),
+        radial-gradient(1000px 520px at 8% -8%, rgba(139, 195, 74, 0.28), transparent 58%),
+        radial-gradient(900px 480px at 100% 0%, rgba(76, 175, 80, 0.14), transparent 55%),
         var(--bg);
       color: var(--text);
       line-height: 1.65;
     }
+    .emph { color: var(--brand-dark); font-weight: 800; }
 
     a { color: inherit; text-decoration: none; }
 
@@ -48,9 +53,17 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 18, 32, 0.75);
-      border-bottom: 1px solid var(--line);
+      background: var(--nav);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 2px 12px rgba(27, 94, 32, 0.12);
+    }
+    .nav .logo,
+    .nav .nav-links a:not(.btn) {
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .nav .nav-links a:not(.btn):hover {
+      color: #fff;
+      opacity: 0.95;
     }
     .nav-inner {
       display: flex;
@@ -70,30 +83,29 @@
       width: 34px;
       height: 34px;
       border-radius: 10px;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      background: #fff;
       display: grid;
       place-items: center;
       font-size: 0.75rem;
       font-weight: 900;
-      color: #061018;
+      color: var(--brand-dark);
     }
     .nav-links {
       display: flex;
       gap: 0.85rem;
       flex-wrap: wrap;
       align-items: center;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.92);
       font-size: 0.92rem;
     }
-    .nav-links a:hover { color: var(--text); }
 
     .lang-select {
       appearance: none;
       -webkit-appearance: none;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 999px;
-      background: rgba(255,255,255,0.06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239aa8c7' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 0.7rem center;
-      color: var(--text);
+      background: rgba(255,255,255,0.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 0.7rem center;
+      color: #fff;
       font-weight: 700;
       font-size: 0.78rem;
       padding: 0.45rem 1.85rem 0.45rem 0.75rem;
@@ -101,8 +113,9 @@
       font-family: inherit;
       max-width: 9.5rem;
     }
+    .lang-select option { color: #333; background: #fff; }
     .lang-select:focus {
-      outline: 1px solid rgba(91, 140, 255, 0.55);
+      outline: 1px solid rgba(255, 255, 255, 0.65);
     }
     html[dir="rtl"] .lang-select {
       background-position: left 0.7rem center;
@@ -127,14 +140,24 @@
     }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary {
-      background: linear-gradient(135deg, var(--brand), #7aa4ff);
-      color: #07101f;
-      box-shadow: 0 10px 30px rgba(91, 140, 255, 0.28);
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(46, 125, 50, 0.28);
+    }
+    .nav .btn-primary {
+      background: #fff;
+      color: var(--brand-dark);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     }
     .btn-ghost {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--brand-dark);
+      border: 1px solid rgba(46, 125, 50, 0.28);
+    }
+    .nav .btn-ghost {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
     }
     .btn-sm { padding: 0.55rem 0.95rem; font-size: 0.9rem; }
     .btn-block { width: 100%; }
@@ -152,10 +175,10 @@
       gap: 0.45rem;
       padding: 0.35rem 0.75rem;
       border-radius: 999px;
-      background: rgba(91, 140, 255, 0.12);
-      color: #b9ccff;
+      background: rgba(76, 175, 80, 0.14);
+      color: var(--brand-dark);
       font-size: 0.85rem;
-      border: 1px solid rgba(91, 140, 255, 0.25);
+      border: 1px solid rgba(46, 125, 50, 0.22);
       margin-bottom: 1rem;
     }
     h1 {
@@ -183,14 +206,14 @@
     }
     .chip {
       font-size: 0.82rem;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--line);
+      color: var(--brand-dark);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(46, 125, 50, 0.16);
       border-radius: 999px;
       padding: 0.35rem 0.7rem;
     }
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: calc(var(--radius) + 4px);
       padding: 1.25rem;
@@ -278,8 +301,8 @@
       border-radius: 8px;
       display: grid;
       place-items: center;
-      background: rgba(255, 123, 123, 0.12);
-      color: #ffb4b4;
+      background: rgba(46, 125, 50, 0.12);
+      color: var(--brand);
       font-size: 0.8rem;
       font-weight: 800;
     }
@@ -301,10 +324,10 @@
       min-height: 100%;
     }
     .price-card.featured {
-      border-color: rgba(91, 140, 255, 0.55);
-      background: linear-gradient(180deg, rgba(91, 140, 255, 0.12), rgba(22, 32, 51, 0.95));
+      border-color: rgba(46, 125, 50, 0.45);
+      background: linear-gradient(180deg, #f1f8e9, #ffffff);
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(91, 140, 255, 0.15);
+      box-shadow: 0 16px 40px rgba(46, 125, 50, 0.14);
     }
     .badge {
       position: absolute;
@@ -312,8 +335,8 @@
       right: 14px;
       font-size: 0.72rem;
       font-weight: 800;
-      color: #07101f;
-      background: var(--accent);
+      color: #fff;
+      background: var(--brand);
       border-radius: 999px;
       padding: 0.25rem 0.55rem;
     }
@@ -356,7 +379,7 @@
       padding: 0.4rem 0 0.4rem 1.25rem;
       color: var(--muted);
       font-size: 0.92rem;
-      border-bottom: 1px dashed rgba(255,255,255,0.06);
+      border-bottom: 1px dashed rgba(27, 94, 32, 0.1);
     }
     .price-card li::before {
       content: "✓";
@@ -366,7 +389,7 @@
       font-weight: 800;
     }
     .price-card .exclude {
-      color: #9aa8c7;
+      color: var(--muted);
       font-size: 0.82rem;
       margin: 0 0 1rem;
     }
@@ -388,7 +411,7 @@
       border-bottom: 1px solid var(--line);
       text-align: left;
     }
-    th { color: var(--text); background: rgba(255,255,255,0.03); }
+    th { color: var(--brand-dark); background: rgba(232, 245, 233, 0.85); }
     td { color: var(--muted); }
     tr:last-child td { border-bottom: 0; }
     .center { text-align: center; }
@@ -411,8 +434,8 @@
       display: grid;
       place-items: center;
       font-weight: 900;
-      background: rgba(55, 214, 197, 0.14);
-      color: #8ff0e4;
+      background: rgba(76, 175, 80, 0.16);
+      color: var(--brand-dark);
       margin-bottom: 0.7rem;
     }
     .step h3 { margin: 0 0 0.4rem; font-size: 1rem; }
@@ -438,11 +461,12 @@
     }
 
     .cta {
-      background: linear-gradient(135deg, rgba(91, 140, 255, 0.18), rgba(55, 214, 197, 0.1));
-      border: 1px solid rgba(91, 140, 255, 0.28);
+      background: linear-gradient(135deg, rgba(232, 245, 233, 0.95), rgba(200, 230, 201, 0.55));
+      border: 1px solid rgba(46, 125, 50, 0.22);
       border-radius: calc(var(--radius) + 6px);
       padding: 1.8rem 1.4rem;
       text-align: center;
+      box-shadow: var(--shadow);
     }
     .cta h2 { margin: 0 0 0.6rem; }
     .cta p { margin: 0 auto 1rem; color: var(--muted); max-width: 36rem; }
@@ -454,13 +478,14 @@
       margin: 1rem 0 0.5rem;
     }
     .contact-pill {
-      background: rgba(0,0,0,0.25);
-      border: 1px solid var(--line);
+      background: #fff;
+      border: 1px solid rgba(46, 125, 50, 0.18);
       border-radius: 999px;
       padding: 0.55rem 0.95rem;
       font-size: 0.95rem;
+      box-shadow: 0 4px 14px rgba(27, 94, 32, 0.06);
     }
-    .contact-pill strong { color: var(--brand-2); }
+    .contact-pill strong { color: var(--brand); }
     .contact-pill a { color: inherit; text-decoration: none; }
     .checklist {
       text-align: left;
@@ -532,7 +557,7 @@
           <h1 data-i18n-html="hero_h1">Can’t deploy? Can’t go live?<br />I take you from zero to a working URL.</h1>
           <p class="lead" data-i18n-html="hero_lead">
             Cloud / VPS deployment · AI-assisted landing pages &amp; tools · domains &amp; HTTPS · basic ops.
-            You bring the idea and assets; I deliver something <strong style="color:#fff">live, reachable, and hand-over ready</strong>.
+            You bring the idea and assets; I deliver something <strong class="emph">live, reachable, and hand-over ready</strong>.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#pricing" data-i18n="hero_btn_pricing">View packages</a>
@@ -831,7 +856,7 @@
               <tr>
                 <td data-i18n="cmp_r7">Best for</td>
                 <td class="center" data-i18n="cmp_r7a">Test / personal page</td>
-                <td class="center"><strong style="color:#fff" data-i18n="cmp_r7b">Most clients</strong></td>
+                <td class="center"><strong class="emph" data-i18n="cmp_r7b">Most clients</strong></td>
                 <td class="center" data-i18n="cmp_r7c">Hands-off long term</td>
               </tr>
             </tbody>
