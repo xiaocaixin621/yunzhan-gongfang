@@ -39,6 +39,22 @@
 open "/Users/mac/Downloads/自制项目/接单服务站/index.html"
 ```
 
+## 双平台部署
+
+| 平台 | 地址 | 说明 |
+|------|------|------|
+| **Cloudflare Pages** | https://yunzhan-gongfang.pages.dev/ | 本次 CLI 直推；可选自定义域名 |
+| **GitHub Pages** | https://xiaocaixin621.github.io/yunzhan-gongfang/ · https://shop.weareworld.ccwu.cc/ | Actions 自动部署 |
+
+本地再推 Cloudflare：
+
+```bash
+mkdir -p /tmp/cf-pages-yunzhan && cp index.html i18n.js /tmp/cf-pages-yunzhan/
+npx wrangler pages deploy /tmp/cf-pages-yunzhan --project-name=yunzhan-gongfang --branch=main
+```
+
+GitHub Actions 同步到 Cloudflare：在仓库 Secrets 添加 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`（当前账号 ID：`57979efb516c9f460d483e4f64634aa5`），workflow 见 `.github/workflows/cloudflare-pages.yml`。
+
 ## 永久上线：GitHub Pages（免费 `*.github.io`）
 
 仓库建议名：`yunzhan-gongfang`  
