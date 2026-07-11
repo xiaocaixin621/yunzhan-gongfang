@@ -36,14 +36,30 @@ git push -u origin main
 3. 仓库 → **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**，保存。  
    随后 workflow `Deploy GitHub Pages` 会自动发布。
 
-### 绑定你的免费域名（如 `xxx.ccwu.cc`）
+### 绑定自定义域名 `shop.weareworld.ccwu.cc`
 
-1. Pages 发布成功后，Settings → Pages → **Custom domain** 填入域名。
-2. 域名 DNS（DNSHE / Cloudflare）添加：
-   - **CNAME** `@` 或子域 → `xiaocaixin621.github.io`
-   - 按 GitHub 提示加 **TXT** 做所有权验证（若需要）
-3. 勾选 Enforce HTTPS（证书签发需几分钟）。
+GitHub Pages 已绑定该域名（不动父域 `weareworld.ccwu.cc` 的 A 记录）。
 
+在 Cloudflare / DNSHE 里 **新增一条 CNAME**（不要动现有 `weareworld` 的 A）：
+
+| 类型 | 名称（Name） | 目标（Target） | 代理 |
+|------|----------------|----------------|------|
+| **CNAME** | `shop.weareworld` 或 `shop`（以面板说明为准，最终完整名须为 `shop.weareworld.ccwu.cc`） | `xiaocaixin621.github.io` | **灰云 / 仅 DNS** |
+
+常见面板写法：
+
+- 若 Zone 是 `ccwu.cc`：名称填 `shop.weareworld`，目标 `xiaocaixin621.github.io`
+- 若 Zone 是 `weareworld.ccwu.cc`：名称填 `shop`，目标 `xiaocaixin621.github.io`
+
+自检：
+
+```bash
+dig +short CNAME shop.weareworld.ccwu.cc
+# 应看到：xiaocaixin621.github.io.
+```
+
+生效后打开 http://shop.weareworld.ccwu.cc ，证书就绪后再 Enforce HTTPS。  
+备用：https://xiaocaixin621.github.io/yunzhan-gongfang/
 ## 备用：已有 VPS
 
 把 `index.html` 放到 Nginx/Apache 网站根目录，DNS A 记录指到 VPS。  

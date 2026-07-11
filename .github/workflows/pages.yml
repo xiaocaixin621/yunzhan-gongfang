@@ -28,7 +28,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           # custom domain for GitHub Pages
-          if [ -f CNAME ]; then cp CNAME _site/; else echo "weareworld.ccwu.cc" > _site/CNAME; fi
+          if [ -f CNAME ]; then cp CNAME _site/; else echo "shop.weareworld.ccwu.cc" > _site/CNAME; fi
           [ -f qrcode.png ] && cp qrcode.png _site/ || true
 
       - name: Setup Pages
