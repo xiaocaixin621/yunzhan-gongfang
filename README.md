@@ -1,22 +1,17 @@
 # 云栈工坊 · 接单服务站
 
-**路径（不在 Maradona 下）：**  
-`/Users/mac/Downloads/自制项目/接单服务站/`
-
+**路径：** `/Users/mac/Downloads/自制项目/接单服务站/`  
 单文件静态站：`index.html`（手机自适应，无需 WordPress / 数据库）。
 
-## 上线前必改
+## 联系方式（已写入页面）
 
-用编辑器打开 `index.html`，搜索并替换：
+| 渠道 | 值 |
+|------|-----|
+| Telegram | [@bill2wang](https://t.me/bill2wang) |
+| 邮箱 | littlego@keyouhow987.ccwu.cc |
+| 档期 | 本周还可接 2 单 |
 
-| 占位符 | 含义 |
-|--------|------|
-| `REPLACE_WECHAT` | 微信号 |
-| `REPLACE_TG` | Telegram 用户名（不要带 @ 重复，页面上已有 @） |
-| `REPLACE_EMAIL` | 邮箱（两处：展示 + mailto 链接） |
-| `REPLACE_SLOTS` | 档期文案，如「本周还可接 2 单」 |
-
-可选：站点名「云栈工坊」全文替换成你的品牌名。
+页面**不展示微信号**。
 
 ## 本地预览
 
@@ -24,13 +19,32 @@
 open "/Users/mac/Downloads/自制项目/接单服务站/index.html"
 ```
 
-或在 Finder 中双击 `index.html`。
+## 永久上线：GitHub Pages（免费 `*.github.io`）
 
-## 挂到免费域名（任选）
+仓库建议名：`yunzhan-gongfang`  
+预期地址：`https://xiaocaixin621.github.io/yunzhan-gongfang/`
 
-1. **Cloudflare Pages / GitHub Pages / Vercel**  
-   上传本目录或只推 `index.html`，绑定你的免费域名。
-2. **已有 VPS**  
-   把 `index.html` 放到 Nginx/Apache 网站根目录，DNS 指到 VPS。
+1. 浏览器打开 [新建仓库](https://github.com/new?name=yunzhan-gongfang&visibility=public)，**Public**，不要勾选 README。
+2. 本地推送（已在本目录初始化 git）：
 
-静态站无数据库，备份 = 复制一个 `index.html` 即可，避免再出现「VPS 到期全站没了」。
+```bash
+cd "/Users/mac/Downloads/自制项目/接单服务站"
+git remote set-url origin git@github.com:xiaocaixin621/yunzhan-gongfang.git
+git push -u origin main
+```
+
+3. 仓库 → **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**，保存。  
+   随后 workflow `Deploy GitHub Pages` 会自动发布。
+
+### 绑定你的免费域名（如 `xxx.ccwu.cc`）
+
+1. Pages 发布成功后，Settings → Pages → **Custom domain** 填入域名。
+2. 域名 DNS（DNSHE / Cloudflare）添加：
+   - **CNAME** `@` 或子域 → `xiaocaixin621.github.io`
+   - 按 GitHub 提示加 **TXT** 做所有权验证（若需要）
+3. 勾选 Enforce HTTPS（证书签发需几分钟）。
+
+## 备用：已有 VPS
+
+把 `index.html` 放到 Nginx/Apache 网站根目录，DNS A 记录指到 VPS。  
+静态站无数据库，备份 = 复制 `index.html`。
