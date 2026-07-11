@@ -11,7 +11,27 @@
 | 邮箱 | littlego@keyouhow987.ccwu.cc |
 | 档期 | 本周还可接 2 单 |
 
+页面**不展示微信号**。
 
+## 语言（多语）
+
+右上角下拉选择，写入 `localStorage`；语言包在 [`i18n.js`](i18n.js)。
+
+| 代码 | 语言 |
+|------|------|
+| en | English（默认，海外优先） |
+| zh | 中文 |
+| es | Español |
+| pt | Português |
+| fr | Français |
+| de | Deutsch |
+| ja | 日本語 |
+| ko | 한국어 |
+| ru | Русский |
+| id | Indonesia |
+| ar | العربية（RTL） |
+
+- 浏览器语言会自动匹配；中文主标 **¥**，其他语种主标 **USD**
 
 ## 本地预览
 
