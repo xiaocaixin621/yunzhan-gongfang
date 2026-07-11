@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="远程建站与 VPS 部署服务：3–7 天帮你上线网站、小工具与基础运维。透明套餐，源码可移交。" />
-  <title>云栈工坊 · 建站与部署接单</title>
+  <meta name="description" content="Remote website builds & VPS deployment in 3–7 days. Clear packages, source handover. Telegram & email." />
+  <meta name="description" lang="zh-CN" content="远程建站与 VPS 部署：3–7 天上线网站、小工具与基础运维。透明套餐，源码可移交。" />
+  <title>CloudStack Workshop · Websites & Deployment</title>
   <style>
     :root {
       --bg: #0b1220;
@@ -72,19 +73,41 @@
       background: linear-gradient(135deg, var(--brand), var(--brand-2));
       display: grid;
       place-items: center;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 900;
       color: #061018;
     }
     .nav-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.85rem;
       flex-wrap: wrap;
       align-items: center;
       color: var(--muted);
       font-size: 0.92rem;
     }
     .nav-links a:hover { color: var(--text); }
+
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.65rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-switch button.active {
+      background: rgba(91, 140, 255, 0.25);
+      color: #fff;
+    }
 
     .btn {
       display: inline-flex;
@@ -97,6 +120,7 @@
       font-weight: 700;
       cursor: pointer;
       transition: transform 0.15s ease, opacity 0.15s ease;
+      font-family: inherit;
     }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary {
@@ -214,7 +238,7 @@
     .section-head p {
       margin: 0;
       color: var(--muted);
-      max-width: 40rem;
+      max-width: 42rem;
     }
 
     .grid-2 {
@@ -307,6 +331,11 @@
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--muted);
+    }
+    .price-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: -0.15rem 0 0.55rem;
     }
     .price-card .cycle {
       color: var(--muted);
@@ -429,6 +458,7 @@
       font-size: 0.95rem;
     }
     .contact-pill strong { color: var(--brand-2); }
+    .contact-pill a { color: inherit; text-decoration: none; }
     .checklist {
       text-align: left;
       max-width: 28rem;
@@ -472,21 +502,23 @@
   </style>
 </head>
 <body>
-  <!-- 搜索 REPLACE_ 换成你的真实联系方式 -->
-
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="logo" href="#top">
-        <span class="logo-mark">云</span>
-        <span>云栈工坊</span>
+        <span class="logo-mark">CS</span>
+        <span data-i18n="brand">CloudStack Workshop</span>
       </a>
       <nav class="nav-links">
-        <a class="hide-sm" href="#pain">痛点</a>
-        <a class="hide-sm" href="#services">服务</a>
-        <a href="#pricing">套餐</a>
-        <a class="hide-sm" href="#process">流程</a>
+        <a class="hide-sm" href="#pain" data-i18n="nav_pain">Pain points</a>
+        <a class="hide-sm" href="#services" data-i18n="nav_services">Services</a>
+        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a class="hide-sm" href="#process" data-i18n="nav_process">Process</a>
         <a class="hide-sm" href="#faq">FAQ</a>
-        <a class="btn btn-primary btn-sm" href="#contact">立即咨询</a>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" id="btn-en" data-lang="en" class="active">EN</button>
+          <button type="button" id="btn-zh" data-lang="zh">中文</button>
+        </div>
+        <a class="btn btn-primary btn-sm" href="#contact" data-i18n="nav_cta">Contact</a>
       </nav>
     </div>
   </header>
@@ -495,41 +527,41 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">远程交付 · 建站 / 部署 / 运维</div>
-          <h1>不会部署？不会上线？<br />我帮你从 0 做到能访问。</h1>
-          <p class="lead">
-            擅长：云服务器 / VPS 部署 · AI 快速开发落地页与小工具 · 域名 HTTPS · 基础运维。
-            你提供想法和资料，我负责做成<strong style="color:#fff">线上可打开、可交付</strong>的结果。
+          <div class="eyebrow" data-i18n="hero_eyebrow">Remote · Build · Deploy · Maintain</div>
+          <h1 data-i18n-html="hero_h1">Can’t deploy? Can’t go live?<br />I take you from zero to a working URL.</h1>
+          <p class="lead" data-i18n-html="hero_lead">
+            Cloud / VPS deployment · AI-assisted landing pages &amp; tools · domains &amp; HTTPS · basic ops.
+            You bring the idea and assets; I deliver something <strong style="color:#fff">live, reachable, and hand-over ready</strong>.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#pricing">查看套餐与价格</a>
-            <a class="btn btn-ghost" href="#contact">TG / 邮件咨询（24h 内回复）</a>
+            <a class="btn btn-primary" href="#pricing" data-i18n="hero_btn_pricing">View packages</a>
+            <a class="btn btn-ghost" href="#contact" data-i18n="hero_btn_contact">Telegram / email (24h reply)</a>
           </div>
           <div class="trust">
-            <span class="chip">远程交付</span>
-            <span class="chip">源码可移交</span>
-            <span class="chip">含上线部署</span>
-            <span class="chip">支持后续维护</span>
+            <span class="chip" data-i18n="chip1">Remote delivery</span>
+            <span class="chip" data-i18n="chip2">Source code handover</span>
+            <span class="chip" data-i18n="chip3">Go-live included</span>
+            <span class="chip" data-i18n="chip4">Ongoing care available</span>
           </div>
         </div>
 
         <aside class="hero-card">
-          <h3>三档结果导向套餐</h3>
+          <h3 data-i18n="hero_card_title">Three outcome-based packages</h3>
           <div class="stat-row">
             <div class="stat">
-              <b>¥499 起</b>
-              <span>体验包 · 1–3 天</span>
+              <b data-i18n="stat1_price">From $69</b>
+              <span data-i18n="stat1_sub">Starter · 1–3 days</span>
             </div>
             <div class="stat">
-              <b>¥1,499</b>
-              <span>标准包 · 最受欢迎</span>
+              <b data-i18n="stat2_price">$209</b>
+              <span data-i18n="stat2_sub">Standard · most popular</span>
             </div>
           </div>
           <ul class="mini-list">
-            <li class="dot-ok">个人 / 工作室 / 小生意获客站</li>
-            <li class="dot-ok">小工具 · 表单 · 机器人部署</li>
-            <li class="dot-ok">VPS 初始化 · HTTPS · 备份运维</li>
-            <li class="dot-ok">范围写清 · 价格先讲明 · 不接灰产</li>
+            <li class="dot-ok" data-i18n="mini1">Personal / freelance / small-biz sites</li>
+            <li class="dot-ok" data-i18n="mini2">Tools · forms · bot deployment</li>
+            <li class="dot-ok" data-i18n="mini3">VPS setup · HTTPS · backups</li>
+            <li class="dot-ok" data-i18n="mini4">Clear scope · upfront price · no grey work</li>
           </ul>
         </aside>
       </div>
@@ -538,36 +570,36 @@
     <section id="pain">
       <div class="wrap">
         <div class="section-head">
-          <h2>你是不是正在为这些事浪费时间？</h2>
-          <p>这些问题，正是我的服务范围——少说话，多上线。</p>
+          <h2 data-i18n="pain_h2">Sound familiar?</h2>
+          <p data-i18n="pain_p">These are exactly what I ship—less talk, more live URLs.</p>
         </div>
         <div class="grid-2">
           <div class="card pain-item">
             <div class="n">1</div>
             <div>
-              <h3>有想法，上不了线</h3>
-              <p>不会买服务器、配域名、上 HTTPS，方案一直停在草稿里。</p>
+              <h3 data-i18n="pain1_t">Idea ready, not online</h3>
+              <p data-i18n="pain1_p">Servers, DNS, HTTPS—stuck in drafts forever.</p>
             </div>
           </div>
           <div class="card pain-item">
             <div class="n">2</div>
             <div>
-              <h3>找人做站又贵又慢</h3>
-              <p>公司报价高、周期长；便宜模板店做完没人管、也部署不好。</p>
+              <h3 data-i18n="pain2_t">Agencies are slow &amp; pricey</h3>
+              <p data-i18n="pain2_p">Big quotes and long timelines; cheap template shops vanish after delivery.</p>
             </div>
           </div>
           <div class="card pain-item">
             <div class="n">3</div>
             <div>
-              <h3>小工具没人做</h3>
-              <p>机器人、自动化、内部效率页，不值请全职，又找不到靠谱的人。</p>
+              <h3 data-i18n="pain3_t">Small tools, no builder</h3>
+              <p data-i18n="pain3_p">Bots, automations, internal pages—not worth a full hire, hard to find help.</p>
             </div>
           </div>
           <div class="card pain-item">
             <div class="n">4</div>
             <div>
-              <h3>网站挂了不知道找谁</h3>
-              <p>证书过期、访问慢、机器到期迁移——需要有人能排障、能交付。</p>
+              <h3 data-i18n="pain4_t">Site down, no one to call</h3>
+              <p data-i18n="pain4_p">Expired SSL, slow loads, VPS expiry—need someone who can fix and ship.</p>
             </div>
           </div>
         </div>
@@ -577,50 +609,50 @@
     <section id="services">
       <div class="wrap">
         <div class="section-head">
-          <h2>服务范围</h2>
-          <p>把「开发 + 服务器上线」一次做完，你拿到的是可访问链接，不是半成品压缩包。</p>
+          <h2 data-i18n="svc_h2">What I offer</h2>
+          <p data-i18n="svc_p">Build + server go-live in one pass. You get a working link—not a half-done zip.</p>
         </div>
         <div class="grid-3">
           <div class="card">
-            <h3>展示型网站</h3>
+            <h3 data-i18n="svc1_t">Showcase sites</h3>
             <ul>
-              <li>个人站、工作室页</li>
-              <li>产品介绍、活动落地页</li>
+              <li data-i18n="svc1_1">Personal &amp; portfolio pages</li>
+              <li data-i18n="svc1_2">Product / campaign landings</li>
             </ul>
           </div>
           <div class="card">
-            <h3>获客小站</h3>
+            <h3 data-i18n="svc2_t">Lead-gen sites</h3>
             <ul>
-              <li>表单线索收集</li>
-              <li>预约 / 联系通知</li>
+              <li data-i18n="svc2_1">Forms &amp; lead capture</li>
+              <li data-i18n="svc2_2">Booking / contact alerts</li>
             </ul>
           </div>
           <div class="card">
-            <h3>小工具 & 机器人</h3>
+            <h3 data-i18n="svc3_t">Tools &amp; bots</h3>
             <ul>
-              <li>内部效率页、脚本</li>
-              <li>Telegram / 通知类机器人</li>
+              <li data-i18n="svc3_1">Internal tools &amp; scripts</li>
+              <li data-i18n="svc3_2">Telegram / notification bots</li>
             </ul>
           </div>
           <div class="card">
-            <h3>部署运维</h3>
+            <h3 data-i18n="svc4_t">Deploy &amp; ops</h3>
             <ul>
-              <li>VPS 初始化、Nginx、HTTPS</li>
-              <li>备份、迁移、挂了急救</li>
+              <li data-i18n="svc4_1">VPS, Nginx, HTTPS</li>
+              <li data-i18n="svc4_2">Backups, migration, emergency fixes</li>
             </ul>
           </div>
           <div class="card">
-            <h3>技术栈</h3>
+            <h3 data-i18n="svc5_t">Stack</h3>
             <ul>
-              <li>云服务器 / Linux / 域名</li>
-              <li>AI 辅助快速落地页面与工具</li>
+              <li data-i18n="svc5_1">Cloud / Linux / DNS</li>
+              <li data-i18n="svc5_2">AI-assisted fast delivery</li>
             </ul>
           </div>
           <div class="card">
-            <h3>明确不做</h3>
+            <h3 data-i18n="svc6_t">I don’t take</h3>
             <ul>
-              <li>大型 APP、复杂全站电商</li>
-              <li>棋牌 / 盘方 / 违法灰产 / 长期驻场</li>
+              <li data-i18n="svc6_1">Large apps / full ecommerce suites</li>
+              <li data-i18n="svc6_2">Illegal, grey-market, or full-time onsite</li>
             </ul>
           </div>
         </div>
@@ -630,207 +662,210 @@
     <section id="pricing">
       <div class="wrap">
         <div class="section-head">
-          <h2>透明套餐 · 按结果付费</h2>
-          <p>以下为常见标准价。需求特殊可加项报价。学生 / 首单可备注「首单」，酌情优惠。</p>
+          <h2 data-i18n="price_h2">Clear packages · pay for outcomes</h2>
+          <p data-i18n="price_p">Standard rates below. Custom scope quoted separately. First order—mention “first project” for a possible discount. USD is approximate (≈ ¥7.2); settle in USD / USDT / CNY as agreed.</p>
         </div>
 
         <div class="price-grid">
           <article class="price-card">
-            <h3 class="name">上线体验包</h3>
-            <p class="desc">先有一个能打开的页面，验证想法 / 个人展示。</p>
-            <div class="price">¥499</div>
-            <div class="cycle">周期 1–3 天（资料齐全时）</div>
+            <h3 class="name" data-i18n="p1_name">Launch Starter</h3>
+            <p class="desc" data-i18n="p1_desc">A live page first—validate the idea or personal brand.</p>
+            <div class="price" data-i18n="p1_price">$69</div>
+            <div class="price-sub" data-i18n="p1_price_sub">≈ ¥499</div>
+            <div class="cycle" data-i18n="p1_cycle">1–3 days (assets ready)</div>
             <ul>
-              <li>单页展示站（介绍 + 联系 + 基础排版）</li>
-              <li>域名绑定协助（免费或自有域名）</li>
-              <li>HTTPS 证书配置</li>
-              <li>部署到云服务器 / VPS</li>
-              <li>交付访问链接 + 修改说明</li>
-              <li>售后：7 天内 Bug 修复（非新需求）</li>
+              <li data-i18n="p1_l1">One-page site (intro + contact + layout)</li>
+              <li data-i18n="p1_l2">Domain bind help (free or your domain)</li>
+              <li data-i18n="p1_l3">HTTPS setup</li>
+              <li data-i18n="p1_l4">Deploy to cloud / VPS</li>
+              <li data-i18n="p1_l5">Live URL + edit notes</li>
+              <li data-i18n="p1_l6">7-day bugfix (not new features)</li>
             </ul>
-            <p class="exclude">不含：多页面、后台、支付、复杂动画、SEO 优化包</p>
-            <a class="btn btn-ghost btn-block" href="#contact">选体验包 · 发我文案资料</a>
+            <p class="exclude" data-i18n="p1_ex">Not included: multi-page, admin, payments, heavy animation, SEO package</p>
+            <a class="btn btn-ghost btn-block" href="#contact" data-i18n="p1_btn">Choose Starter · send assets</a>
           </article>
 
           <article class="price-card featured">
-            <span class="badge">最受欢迎</span>
-            <h3 class="name">标准获客站</h3>
-            <p class="desc">小生意、个人品牌、需要留资的正经线上门面。</p>
-            <div class="price">¥1,499</div>
-            <div class="cycle">周期 3–7 天 · 主推</div>
+            <span class="badge" data-i18n="p2_badge">Most popular</span>
+            <h3 class="name" data-i18n="p2_name">Standard Growth Site</h3>
+            <p class="desc" data-i18n="p2_desc">Small business or personal brand that needs real leads.</p>
+            <div class="price" data-i18n="p2_price">$209</div>
+            <div class="price-sub" data-i18n="p2_price_sub">≈ ¥1,499</div>
+            <div class="cycle" data-i18n="p2_cycle">3–7 days · recommended</div>
             <ul>
-              <li>最多 5 个页面（首页 / 服务 / 案例 / 关于 / 联系）</li>
-              <li>联系表单或线索收集（通知 TG 或邮箱）</li>
-              <li>响应式（手机可正常浏览）</li>
-              <li>域名 + HTTPS + VPS 部署全流程</li>
-              <li>基础 SEO：标题、描述、Sitemap 级配置</li>
-              <li>源码移交 + 1 次使用培训</li>
-              <li>售后：30 天缺陷修复 + 2 次小改</li>
+              <li data-i18n="p2_l1">Up to 5 pages (home / services / work / about / contact)</li>
+              <li data-i18n="p2_l2">Lead form (Telegram or email notify)</li>
+              <li data-i18n="p2_l3">Responsive (mobile-friendly)</li>
+              <li data-i18n="p2_l4">Domain + HTTPS + full VPS deploy</li>
+              <li data-i18n="p2_l5">Basic SEO: title, description, sitemap-level</li>
+              <li data-i18n="p2_l6">Source handover + one walkthrough</li>
+              <li data-i18n="p2_l7">30-day fixes + 2 small tweaks</li>
             </ul>
-            <p class="exclude">可选：加 1 页 +¥150 · 多渠道通知 +¥100 · 简易统计 +¥200</p>
-            <a class="btn btn-primary btn-block" href="#contact">选标准包 · 主推</a>
+            <p class="exclude" data-i18n="p2_ex">Add-ons: +1 page $21 · extra notify channel $14 · simple analytics $28</p>
+            <a class="btn btn-primary btn-block" href="#contact" data-i18n="p2_btn">Choose Standard · recommended</a>
           </article>
 
           <article class="price-card">
-            <h3 class="name">年度护航</h3>
-            <p class="desc">要稳定在线、偶尔改、不想自己折腾服务器。</p>
-            <div class="price">¥3,499 <small>/ 年起</small></div>
-            <div class="cycle">含标准交付或接入已有站 · 详询</div>
+            <h3 class="name" data-i18n="p3_name">Yearly Care</h3>
+            <p class="desc" data-i18n="p3_desc">Stay online, occasional edits, no server headaches.</p>
+            <div class="price" data-i18n-html="p3_price">$489 <small>/yr+</small></div>
+            <div class="price-sub" data-i18n="p3_price_sub">≈ ¥3,499 / year+</div>
+            <div class="cycle" data-i18n="p3_cycle">Includes Standard delivery or onboarding an existing site</div>
             <ul>
-              <li>含「标准获客站」全套交付（或折算接入维护）</li>
-              <li>12 个月监控存活 + 每月备份</li>
-              <li>SSL 续期协助、基础安全更新</li>
-              <li>每月 2 次小改版额度</li>
-              <li>工作日 24–48h 内故障响应</li>
-              <li>季度 1 次简单优化建议</li>
+              <li data-i18n="p3_l1">Full Standard delivery (or maintenance credit)</li>
+              <li data-i18n="p3_l2">12 months uptime checks + monthly backups</li>
+              <li data-i18n="p3_l3">SSL renewals &amp; basic security updates</li>
+              <li data-i18n="p3_l4">2 small content edits / month</li>
+              <li data-i18n="p3_l5">Weekday incident response within 24–48h</li>
+              <li data-i18n="p3_l6">Quarterly light improvement notes</li>
             </ul>
-            <p class="exclude">不含大型改版与全新功能（可另报价）。云主机费实报实销。</p>
-            <a class="btn btn-ghost btn-block" href="#contact">选年度护航 · 省心</a>
+            <p class="exclude" data-i18n="p3_ex">Large redesigns &amp; new features quoted separately. Cloud host billed at cost.</p>
+            <a class="btn btn-ghost btn-block" href="#contact" data-i18n="p3_btn">Choose Yearly Care</a>
           </article>
         </div>
 
         <div class="section-head" style="margin-top:2.2rem">
-          <h2>加项价目</h2>
-          <p>已有代码 / 只修不建 / 机器人等，按项计价。</p>
+          <h2 data-i18n="add_h2">Add-on menu</h2>
+          <p data-i18n="add_p">Existing code / fix-only / bots—priced by item.</p>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>加项</th>
-                <th>参考价</th>
-                <th>说明</th>
+                <th data-i18n="th_item">Item</th>
+                <th data-i18n="th_price">From</th>
+                <th data-i18n="th_note">Notes</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>仅服务器部署（已有代码）</td>
-                <td>¥200–600</td>
-                <td>上线跑通 + HTTPS</td>
+                <td data-i18n="a1">Deploy only (you have code)</td>
+                <td data-i18n="a1p">$28–$84</td>
+                <td data-i18n="a1n">Live + HTTPS</td>
               </tr>
               <tr>
-                <td>网站迁移 / 换机</td>
-                <td>¥200–800</td>
-                <td>含基础验证访问</td>
+                <td data-i18n="a2">Site migration / new host</td>
+                <td data-i18n="a2p">$28–$112</td>
+                <td data-i18n="a2n">Basic access check</td>
               </tr>
               <tr>
-                <td>挂了急救（排障恢复）</td>
-                <td>¥100–500</td>
-                <td>按复杂度</td>
+                <td data-i18n="a3">Emergency recovery</td>
+                <td data-i18n="a3p">$14–$70</td>
+                <td data-i18n="a3n">By complexity</td>
               </tr>
               <tr>
-                <td>Telegram 通知机器人</td>
-                <td>¥300–1,500</td>
-                <td>需求确认后报价</td>
+                <td data-i18n="a4">Telegram notify bot</td>
+                <td data-i18n="a4p">$42–$210</td>
+                <td data-i18n="a4n">Quoted after scope</td>
               </tr>
               <tr>
-                <td>简单自动化脚本</td>
-                <td>¥500 起</td>
-                <td>按目标与接口</td>
+                <td data-i18n="a5">Simple automation script</td>
+                <td data-i18n="a5p">From $70</td>
+                <td data-i18n="a5n">By goals &amp; APIs</td>
               </tr>
               <tr>
-                <td>加急 48h 交付</td>
-                <td>+30%</td>
-                <td>视档期</td>
+                <td data-i18n="a6">48h rush</td>
+                <td data-i18n="a6p">+30%</td>
+                <td data-i18n="a6n">Subject to capacity</td>
               </tr>
               <tr>
-                <td>额外设计感定制 UI</td>
-                <td>+30%–80%</td>
-                <td>非模板级视觉</td>
+                <td data-i18n="a7">Custom UI polish</td>
+                <td data-i18n="a7p">+30%–80%</td>
+                <td data-i18n="a7n">Beyond template-level look</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="section-head" style="margin-top:2.2rem">
-          <h2>三套餐对比</h2>
+          <h2 data-i18n="cmp_h2">Package comparison</h2>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th></th>
-                <th class="center">体验包 ¥499</th>
-                <th class="center">标准包 ¥1,499</th>
-                <th class="center">年度护航 ¥3,499</th>
+                <th class="center" data-i18n="cmp_c1">Starter $69</th>
+                <th class="center" data-i18n="cmp_c2">Standard $209</th>
+                <th class="center" data-i18n="cmp_c3">Yearly $489</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>页面规模</td>
-                <td class="center">1 页</td>
-                <td class="center">最多 5 页</td>
-                <td class="center">同标准 / 接入已有站</td>
+                <td data-i18n="cmp_r1">Pages</td>
+                <td class="center" data-i18n="cmp_r1a">1 page</td>
+                <td class="center" data-i18n="cmp_r1b">Up to 5</td>
+                <td class="center" data-i18n="cmp_r1c">Same / onboard existing</td>
               </tr>
               <tr>
-                <td>表单留资</td>
+                <td data-i18n="cmp_r2">Lead form</td>
                 <td class="center">—</td>
                 <td class="center">✓</td>
                 <td class="center">✓</td>
               </tr>
               <tr>
-                <td>域名 + HTTPS + 部署</td>
+                <td data-i18n="cmp_r3">Domain + HTTPS + deploy</td>
                 <td class="center">✓</td>
                 <td class="center">✓</td>
                 <td class="center">✓</td>
               </tr>
               <tr>
-                <td>源码移交</td>
+                <td data-i18n="cmp_r4">Source handover</td>
                 <td class="center">✓</td>
                 <td class="center">✓</td>
                 <td class="center">✓</td>
               </tr>
               <tr>
-                <td>售后</td>
-                <td class="center">7 天</td>
-                <td class="center">30 天 + 2 次小改</td>
-                <td class="center">12 个月 + 月 2 次小改</td>
+                <td data-i18n="cmp_r5">Support</td>
+                <td class="center" data-i18n="cmp_r5a">7 days</td>
+                <td class="center" data-i18n="cmp_r5b">30 days + 2 tweaks</td>
+                <td class="center" data-i18n="cmp_r5c">12 mo + 2 edits/mo</td>
               </tr>
               <tr>
-                <td>备份 / 监控</td>
+                <td data-i18n="cmp_r6">Backup / monitoring</td>
                 <td class="center">—</td>
-                <td class="center">基础说明</td>
-                <td class="center">✓ 含</td>
+                <td class="center" data-i18n="cmp_r6b">Basics documented</td>
+                <td class="center" data-i18n="cmp_r6c">Included</td>
               </tr>
               <tr>
-                <td>推荐人群</td>
-                <td class="center">试水 / 个人页</td>
-                <td class="center"><strong style="color:#fff">大多数客户</strong></td>
-                <td class="center">要省心长期在线</td>
+                <td data-i18n="cmp_r7">Best for</td>
+                <td class="center" data-i18n="cmp_r7a">Test / personal page</td>
+                <td class="center"><strong style="color:#fff" data-i18n="cmp_r7b">Most clients</strong></td>
+                <td class="center" data-i18n="cmp_r7c">Hands-off long term</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="note">主推：默认选标准包；预算紧用体验包；怕挂站升年度护航。</p>
+        <p class="note" data-i18n="cmp_note">Default pick: Standard. Tight budget → Starter. Hate downtime → Yearly Care.</p>
       </div>
     </section>
 
     <section id="process">
       <div class="wrap">
         <div class="section-head">
-          <h2>怎么合作（4 步）</h2>
-          <p>资料越齐（文案、logo、图片、联系方式），交付越快。</p>
+          <h2 data-i18n="proc_h2">How we work (4 steps)</h2>
+          <p data-i18n="proc_p">Clearer assets (copy, logo, images, contacts) = faster delivery.</p>
         </div>
         <div class="steps">
           <div class="step">
             <div class="num">1</div>
-            <h3>沟通需求</h3>
-            <p>Telegram 或邮件说明要什么，我回复能否做、哪一档、多久。</p>
+            <h3 data-i18n="proc1_t">Scope</h3>
+            <p data-i18n="proc1_p">Message on Telegram or email. I reply with fit, package, and timeline.</p>
           </div>
           <div class="step">
             <div class="num">2</div>
-            <h3>定金启动</h3>
-            <p>标准：定金 50%，验收尾款 50%。体验包可全款。</p>
+            <h3 data-i18n="proc2_t">Deposit</h3>
+            <p data-i18n="proc2_p">50% to start, 50% on accept. Starter can be paid in full.</p>
           </div>
           <div class="step">
             <div class="num">3</div>
-            <h3>制作预览</h3>
-            <p>给你预览链接，改文案与图片，范围外先报价再改。</p>
+            <h3 data-i18n="proc3_t">Preview</h3>
+            <p data-i18n="proc3_p">You get a preview link; copy/images refined. Out-of-scope changes quoted first.</p>
           </div>
           <div class="step">
             <div class="num">4</div>
-            <h3>上线交付</h3>
-            <p>域名生效、源码 / 文档移交，售后计时开始。</p>
+            <h3 data-i18n="proc4_t">Go live</h3>
+            <p data-i18n="proc4_p">Domain live, source/docs handed over, support window starts.</p>
           </div>
         </div>
       </div>
@@ -839,17 +874,17 @@
     <section id="cases">
       <div class="wrap">
         <div class="section-head">
-          <h2>演示案例</h2>
-          <p>真实客户案例将持续更新。本页本身可作为交付风格示意。</p>
+          <h2 data-i18n="cases_h2">Demo cases</h2>
+          <p data-i18n="cases_p">Client work will be listed as it ships. This page itself shows delivery style.</p>
         </div>
         <div class="grid-2">
           <div class="card">
-            <h3>案例 A · 本地服务展示站（Demo）</h3>
-            <p>类型：单页 + 电话 / 微信引流<br />周期：约 2 天<br />链接：本页即 Demo 结构示意</p>
+            <h3 data-i18n="case1_t">Case A · Local service showcase (Demo)</h3>
+            <p data-i18n-html="case1_p">Type: one-pager + contact CTA<br />Timeline: ~2 days<br />Link: this site as structure demo</p>
           </div>
           <div class="card">
-            <h3>案例 B · 线索收集站（Demo）</h3>
-            <p>类型：服务介绍 + 表单留资结构<br />周期：约 3 天<br />说明：标准获客站页面骨架（可按业务改文案）</p>
+            <h3 data-i18n="case2_t">Case B · Lead capture site (Demo)</h3>
+            <p data-i18n-html="case2_p">Type: services + form layout<br />Timeline: ~3 days<br />Note: Standard package skeleton (copy swapped to your business)</p>
           </div>
         </div>
       </div>
@@ -858,27 +893,27 @@
     <section id="about">
       <div class="wrap">
         <div class="section-head">
-          <h2>为什么找我</h2>
-          <p>不是大公司报价流水线，而是能独立完成「开发 + 服务器上线」的远程协作者。</p>
+          <h2 data-i18n="about_h2">Why work with me</h2>
+          <p data-i18n="about_p">Not an agency assembly line—a remote builder who owns both code and servers.</p>
         </div>
         <div class="grid-2">
           <div class="card">
             <ul>
-              <li>熟练搭建与管理云服务器 / VPS</li>
-              <li>AI 辅助快速实现页面与小工具</li>
-              <li>熟悉域名、HTTPS、基础网络与部署排障</li>
-              <li>范围写清楚、价格先讲明、能做再说能做</li>
+              <li data-i18n="about_l1">Cloud / VPS setup &amp; management</li>
+              <li data-i18n="about_l2">AI-assisted pages &amp; small tools</li>
+              <li data-i18n="about_l3">DNS, HTTPS, network troubleshooting</li>
+              <li data-i18n="about_l4">Clear scope, clear price, honest capacity</li>
             </ul>
           </div>
           <div class="card">
-            <h3>服务对象</h3>
-            <p>个体户、出海 / 远程协作、内容创作者、学生创业、小型团队。</p>
-            <h3 style="margin-top:1rem">合作须知</h3>
+            <h3 data-i18n="about_who_t">Who I help</h3>
+            <p data-i18n="about_who_p">Solo founders, remote / global freelancers, creators, students, small teams.</p>
+            <h3 style="margin-top:1rem" data-i18n="about_terms_t">Terms</h3>
             <ul>
-              <li>体验包可全款；标准 / 年度定金 50%</li>
-              <li>超出范围先报价再改</li>
-              <li>云主机、域名、付费 API 默认客户自付</li>
-              <li>不承接违法违规业务</li>
+              <li data-i18n="about_t1">Starter: full pay OK; Standard / Yearly: 50% deposit</li>
+              <li data-i18n="about_t2">Out-of-scope changes quoted before work</li>
+              <li data-i18n="about_t3">Cloud host, domains, paid APIs billed to client</li>
+              <li data-i18n="about_t4">No illegal projects</li>
             </ul>
           </div>
         </div>
@@ -888,35 +923,35 @@
     <section id="faq">
       <div class="wrap">
         <div class="section-head">
-          <h2>常见问题</h2>
+          <h2 data-i18n="faq_h2">FAQ</h2>
         </div>
         <details class="faq">
-          <summary>我没有服务器和域名怎么办？</summary>
-          <p>可以。我协助注册 / 绑定；服务器可用低价云主机，费用你自付或代购实报实销。</p>
+          <summary data-i18n="faq1_q">No server or domain yet?</summary>
+          <p data-i18n="faq1_a">Fine. I help register/bind. Cheap cloud host is fine—you pay the provider (or I purchase at cost).</p>
         </details>
         <details class="faq">
-          <summary>会不会用模板随便套？</summary>
-          <p>会用高效方案快速交付，但按你的文案与结构定制；需要独特设计可加项。</p>
+          <summary data-i18n="faq2_q">Just a template slap-on?</summary>
+          <p data-i18n="faq2_a">I use efficient stacks for speed, customized to your copy and structure. Unique design is an add-on.</p>
         </details>
         <details class="faq">
-          <summary>源码给我吗？</summary>
-          <p>全款后源码与部署说明移交，你可自由处置。</p>
+          <summary data-i18n="faq3_q">Do I get the source?</summary>
+          <p data-i18n="faq3_a">Yes—after final payment, source and deploy notes are yours.</p>
         </details>
         <details class="faq">
-          <summary>为什么比某宝便宜店贵，又比代理公司便宜？</summary>
-          <p>比「只交模板不负责上线」更完整；比「公司团队报价」更轻。你为的是可访问的结果 + 可维护。</p>
+          <summary data-i18n="faq4_q">Why not the cheapest marketplaces?</summary>
+          <p data-i18n="faq4_a">Cheaper shops often skip real go-live. Agencies cost more for teams. You pay for a live result you can maintain.</p>
         </details>
         <details class="faq">
-          <summary>能开发 App / 商城 / 很复杂的系统吗？</summary>
-          <p>复杂项目可评估拆阶段；不适合的会直接说不做，避免烂尾。</p>
+          <summary data-i18n="faq5_q">Apps / full shops / complex systems?</summary>
+          <p data-i18n="faq5_a">I can phase-evaluate. If it’s a bad fit I’ll say no—better than a half-built mess.</p>
         </details>
         <details class="faq">
-          <summary>只要维护、不要新建可以吗？</summary>
-          <p>可以。已有网站可只买运维 / 急救 / 迁移，按加项或另报价。</p>
+          <summary data-i18n="faq6_q">Maintenance only?</summary>
+          <p data-i18n="faq6_a">Yes. Existing sites can buy ops / emergency / migration only.</p>
         </details>
         <details class="faq">
-          <summary>支持发票吗？</summary>
-          <p>个人服务可提供收款凭证；如需发票请下单前说明。</p>
+          <summary data-i18n="faq7_q">Payment methods?</summary>
+          <p data-i18n="faq7_a">USDT preferred for international clients; Alipay for CN. Invoice needs: tell me before order.</p>
         </details>
       </div>
     </section>
@@ -924,28 +959,27 @@
     <section id="contact">
       <div class="wrap">
         <div class="cta">
-          <h2>准备好上线了吗？</h2>
-          <p>发我这 4 样，我就能报档期与套餐。咨询免费；不合适会直说。</p>
+          <h2 data-i18n="cta_h2">Ready to go live?</h2>
+          <p data-i18n="cta_p">Send these 4 items for a free fit check and package quote. If it’s not a match, I’ll say so.</p>
           <ol class="checklist">
-            <li>你是谁 / 做什么的</li>
-            <li>要网站还是工具 / 机器人</li>
-            <li>有没有域名和服务器</li>
-            <li>希望多久上线</li>
+            <li data-i18n="cta_c1">Who you are / what you do</li>
+            <li data-i18n="cta_c2">Website, tool, or bot?</li>
+            <li data-i18n="cta_c3">Domain / server status</li>
+            <li data-i18n="cta_c4">Target go-live date</li>
           </ol>
 
           <div class="contact-big">
-            <div class="contact-pill">Telegram：<strong><a href="https://t.me/bill2wang" style="color:inherit;text-decoration:none">@bill2wang</a></strong></div>
-            <div class="contact-pill">邮箱：<strong><a href="mailto:littlego@keyouhow987.ccwu.cc" style="color:inherit;text-decoration:none">littlego@keyouhow987.ccwu.cc</a></strong></div>
+            <div class="contact-pill">Telegram：<strong><a href="https://t.me/bill2wang">@bill2wang</a></strong></div>
+            <div class="contact-pill">Email：<strong><a href="mailto:littlego@keyouhow987.ccwu.cc">littlego@keyouhow987.ccwu.cc</a></strong></div>
           </div>
 
           <div class="hero-actions" style="justify-content:center;margin-top:1rem">
-            <a class="btn btn-primary" href="https://t.me/bill2wang">Telegram 咨询</a>
-            <a class="btn btn-ghost" href="mailto:littlego@keyouhow987.ccwu.cc?subject=建站咨询&body=1）用途：%0A2）域名/服务器：%0A3）期望上线时间：%0A4）预算：499 / 1499 / 3499 / 待定">发邮件询盘</a>
+            <a class="btn btn-primary" href="https://t.me/bill2wang" data-i18n="cta_tg">Message on Telegram</a>
+            <a class="btn btn-ghost" id="mail-btn" href="mailto:littlego@keyouhow987.ccwu.cc?subject=Project%20inquiry&body=1)%20Use%20case%3A%0A2)%20Domain%2Fserver%3A%0A3)%20Go-live%20target%3A%0A4)%20Budget%3A%20%2469%20%2F%20%24209%20%2F%20%24489%20%2F%20TBD">Email inquiry</a>
           </div>
 
-          <p class="note">
-            工作时间：每天 20:00 前询盘，一般 24h 内回复。当前档期：本周还可接 2 单。
-            收款：支付宝，可协商 USDT。
+          <p class="note" data-i18n="cta_note">
+            Replies usually within 24h for messages before 20:00 (your local time preferred). Slots: 2 projects open this week. Payment: USDT (intl) / Alipay (CN).
           </p>
         </div>
       </div>
@@ -954,13 +988,368 @@
 
   <footer>
     <div class="wrap foot">
-      <div>© <span id="y"></span> 云栈工坊 · 远程技术服务</div>
-      <div>本站仅提供合法合规的网站与部署服务</div>
+      <div>© <span id="y"></span> <span data-i18n="brand">CloudStack Workshop</span> · <span data-i18n="foot_tag">Remote tech services</span></div>
+      <div data-i18n="foot_legal">Legal web &amp; deployment services only</div>
     </div>
   </footer>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const I18N = {
+      en: {
+        brand: "CloudStack Workshop",
+        title: "CloudStack Workshop · Websites & Deployment",
+        desc: "Remote website builds & VPS deployment in 3–7 days. Clear packages, source handover. Telegram & email.",
+        nav_pain: "Pain points",
+        nav_services: "Services",
+        nav_pricing: "Pricing",
+        nav_process: "Process",
+        nav_cta: "Contact",
+        hero_eyebrow: "Remote · Build · Deploy · Maintain",
+        hero_h1: "Can’t deploy? Can’t go live?<br />I take you from zero to a working URL.",
+        hero_lead: "Cloud / VPS deployment · AI-assisted landing pages &amp; tools · domains &amp; HTTPS · basic ops. You bring the idea and assets; I deliver something <strong style=\"color:#fff\">live, reachable, and hand-over ready</strong>.",
+        hero_btn_pricing: "View packages",
+        hero_btn_contact: "Telegram / email (24h reply)",
+        chip1: "Remote delivery",
+        chip2: "Source code handover",
+        chip3: "Go-live included",
+        chip4: "Ongoing care available",
+        hero_card_title: "Three outcome-based packages",
+        stat1_price: "From $69",
+        stat1_sub: "Starter · 1–3 days",
+        stat2_price: "$209",
+        stat2_sub: "Standard · most popular",
+        mini1: "Personal / freelance / small-biz sites",
+        mini2: "Tools · forms · bot deployment",
+        mini3: "VPS setup · HTTPS · backups",
+        mini4: "Clear scope · upfront price · no grey work",
+        pain_h2: "Sound familiar?",
+        pain_p: "These are exactly what I ship—less talk, more live URLs.",
+        pain1_t: "Idea ready, not online",
+        pain1_p: "Servers, DNS, HTTPS—stuck in drafts forever.",
+        pain2_t: "Agencies are slow & pricey",
+        pain2_p: "Big quotes and long timelines; cheap template shops vanish after delivery.",
+        pain3_t: "Small tools, no builder",
+        pain3_p: "Bots, automations, internal pages—not worth a full hire, hard to find help.",
+        pain4_t: "Site down, no one to call",
+        pain4_p: "Expired SSL, slow loads, VPS expiry—need someone who can fix and ship.",
+        svc_h2: "What I offer",
+        svc_p: "Build + server go-live in one pass. You get a working link—not a half-done zip.",
+        svc1_t: "Showcase sites", svc1_1: "Personal & portfolio pages", svc1_2: "Product / campaign landings",
+        svc2_t: "Lead-gen sites", svc2_1: "Forms & lead capture", svc2_2: "Booking / contact alerts",
+        svc3_t: "Tools & bots", svc3_1: "Internal tools & scripts", svc3_2: "Telegram / notification bots",
+        svc4_t: "Deploy & ops", svc4_1: "VPS, Nginx, HTTPS", svc4_2: "Backups, migration, emergency fixes",
+        svc5_t: "Stack", svc5_1: "Cloud / Linux / DNS", svc5_2: "AI-assisted fast delivery",
+        svc6_t: "I don’t take", svc6_1: "Large apps / full ecommerce suites", svc6_2: "Illegal, grey-market, or full-time onsite",
+        price_h2: "Clear packages · pay for outcomes",
+        price_p: "Standard rates below. Custom scope quoted separately. First order—mention “first project” for a possible discount. USD is approximate (≈ ¥7.2); settle in USD / USDT / CNY as agreed.",
+        p1_name: "Launch Starter",
+        p1_desc: "A live page first—validate the idea or personal brand.",
+        p1_price: "$69", p1_price_sub: "≈ ¥499", p1_cycle: "1–3 days (assets ready)",
+        p1_l1: "One-page site (intro + contact + layout)",
+        p1_l2: "Domain bind help (free or your domain)",
+        p1_l3: "HTTPS setup",
+        p1_l4: "Deploy to cloud / VPS",
+        p1_l5: "Live URL + edit notes",
+        p1_l6: "7-day bugfix (not new features)",
+        p1_ex: "Not included: multi-page, admin, payments, heavy animation, SEO package",
+        p1_btn: "Choose Starter · send assets",
+        p2_badge: "Most popular",
+        p2_name: "Standard Growth Site",
+        p2_desc: "Small business or personal brand that needs real leads.",
+        p2_price: "$209", p2_price_sub: "≈ ¥1,499", p2_cycle: "3–7 days · recommended",
+        p2_l1: "Up to 5 pages (home / services / work / about / contact)",
+        p2_l2: "Lead form (Telegram or email notify)",
+        p2_l3: "Responsive (mobile-friendly)",
+        p2_l4: "Domain + HTTPS + full VPS deploy",
+        p2_l5: "Basic SEO: title, description, sitemap-level",
+        p2_l6: "Source handover + one walkthrough",
+        p2_l7: "30-day fixes + 2 small tweaks",
+        p2_ex: "Add-ons: +1 page $21 · extra notify channel $14 · simple analytics $28",
+        p2_btn: "Choose Standard · recommended",
+        p3_name: "Yearly Care",
+        p3_desc: "Stay online, occasional edits, no server headaches.",
+        p3_price: "$489 <small>/yr+</small>", p3_price_sub: "≈ ¥3,499 / year+",
+        p3_cycle: "Includes Standard delivery or onboarding an existing site",
+        p3_l1: "Full Standard delivery (or maintenance credit)",
+        p3_l2: "12 months uptime checks + monthly backups",
+        p3_l3: "SSL renewals & basic security updates",
+        p3_l4: "2 small content edits / month",
+        p3_l5: "Weekday incident response within 24–48h",
+        p3_l6: "Quarterly light improvement notes",
+        p3_ex: "Large redesigns & new features quoted separately. Cloud host billed at cost.",
+        p3_btn: "Choose Yearly Care",
+        add_h2: "Add-on menu", add_p: "Existing code / fix-only / bots—priced by item.",
+        th_item: "Item", th_price: "From", th_note: "Notes",
+        a1: "Deploy only (you have code)", a1p: "$28–$84", a1n: "Live + HTTPS",
+        a2: "Site migration / new host", a2p: "$28–$112", a2n: "Basic access check",
+        a3: "Emergency recovery", a3p: "$14–$70", a3n: "By complexity",
+        a4: "Telegram notify bot", a4p: "$42–$210", a4n: "Quoted after scope",
+        a5: "Simple automation script", a5p: "From $70", a5n: "By goals & APIs",
+        a6: "48h rush", a6p: "+30%", a6n: "Subject to capacity",
+        a7: "Custom UI polish", a7p: "+30%–80%", a7n: "Beyond template-level look",
+        cmp_h2: "Package comparison",
+        cmp_c1: "Starter $69", cmp_c2: "Standard $209", cmp_c3: "Yearly $489",
+        cmp_r1: "Pages", cmp_r1a: "1 page", cmp_r1b: "Up to 5", cmp_r1c: "Same / onboard existing",
+        cmp_r2: "Lead form", cmp_r3: "Domain + HTTPS + deploy", cmp_r4: "Source handover",
+        cmp_r5: "Support", cmp_r5a: "7 days", cmp_r5b: "30 days + 2 tweaks", cmp_r5c: "12 mo + 2 edits/mo",
+        cmp_r6: "Backup / monitoring", cmp_r6b: "Basics documented", cmp_r6c: "Included",
+        cmp_r7: "Best for", cmp_r7a: "Test / personal page", cmp_r7b: "Most clients", cmp_r7c: "Hands-off long term",
+        cmp_note: "Default pick: Standard. Tight budget → Starter. Hate downtime → Yearly Care.",
+        proc_h2: "How we work (4 steps)",
+        proc_p: "Clearer assets (copy, logo, images, contacts) = faster delivery.",
+        proc1_t: "Scope", proc1_p: "Message on Telegram or email. I reply with fit, package, and timeline.",
+        proc2_t: "Deposit", proc2_p: "50% to start, 50% on accept. Starter can be paid in full.",
+        proc3_t: "Preview", proc3_p: "You get a preview link; copy/images refined. Out-of-scope changes quoted first.",
+        proc4_t: "Go live", proc4_p: "Domain live, source/docs handed over, support window starts.",
+        cases_h2: "Demo cases",
+        cases_p: "Client work will be listed as it ships. This page itself shows delivery style.",
+        case1_t: "Case A · Local service showcase (Demo)",
+        case1_p: "Type: one-pager + contact CTA<br />Timeline: ~2 days<br />Link: this site as structure demo",
+        case2_t: "Case B · Lead capture site (Demo)",
+        case2_p: "Type: services + form layout<br />Timeline: ~3 days<br />Note: Standard package skeleton (copy swapped to your business)",
+        about_h2: "Why work with me",
+        about_p: "Not an agency assembly line—a remote builder who owns both code and servers.",
+        about_l1: "Cloud / VPS setup & management",
+        about_l2: "AI-assisted pages & small tools",
+        about_l3: "DNS, HTTPS, network troubleshooting",
+        about_l4: "Clear scope, clear price, honest capacity",
+        about_who_t: "Who I help",
+        about_who_p: "Solo founders, remote / global freelancers, creators, students, small teams.",
+        about_terms_t: "Terms",
+        about_t1: "Starter: full pay OK; Standard / Yearly: 50% deposit",
+        about_t2: "Out-of-scope changes quoted before work",
+        about_t3: "Cloud host, domains, paid APIs billed to client",
+        about_t4: "No illegal projects",
+        faq_h2: "FAQ",
+        faq1_q: "No server or domain yet?",
+        faq1_a: "Fine. I help register/bind. Cheap cloud host is fine—you pay the provider (or I purchase at cost).",
+        faq2_q: "Just a template slap-on?",
+        faq2_a: "I use efficient stacks for speed, customized to your copy and structure. Unique design is an add-on.",
+        faq3_q: "Do I get the source?",
+        faq3_a: "Yes—after final payment, source and deploy notes are yours.",
+        faq4_q: "Why not the cheapest marketplaces?",
+        faq4_a: "Cheaper shops often skip real go-live. Agencies cost more for teams. You pay for a live result you can maintain.",
+        faq5_q: "Apps / full shops / complex systems?",
+        faq5_a: "I can phase-evaluate. If it’s a bad fit I’ll say no—better than a half-built mess.",
+        faq6_q: "Maintenance only?",
+        faq6_a: "Yes. Existing sites can buy ops / emergency / migration only.",
+        faq7_q: "Payment methods?",
+        faq7_a: "USDT preferred for international clients; Alipay for CN. Invoice needs: tell me before order.",
+        cta_h2: "Ready to go live?",
+        cta_p: "Send these 4 items for a free fit check and package quote. If it’s not a match, I’ll say so.",
+        cta_c1: "Who you are / what you do",
+        cta_c2: "Website, tool, or bot?",
+        cta_c3: "Domain / server status",
+        cta_c4: "Target go-live date",
+        cta_tg: "Message on Telegram",
+        cta_mail: "Email inquiry",
+        cta_note: "Replies usually within 24h for messages before 20:00 (your local time preferred). Slots: 2 projects open this week. Payment: USDT (intl) / Alipay (CN).",
+        foot_tag: "Remote tech services",
+        foot_legal: "Legal web & deployment services only",
+        mail_subject: "Project inquiry",
+        mail_body: "1) Use case:\n2) Domain/server:\n3) Go-live target:\n4) Budget: $69 / $209 / $489 / TBD"
+      },
+      zh: {
+        brand: "云栈工坊",
+        title: "云栈工坊 · 建站与部署接单",
+        desc: "远程建站与 VPS 部署：3–7 天上线网站、小工具与基础运维。透明套餐，源码可移交。",
+        nav_pain: "痛点",
+        nav_services: "服务",
+        nav_pricing: "套餐",
+        nav_process: "流程",
+        nav_cta: "立即咨询",
+        hero_eyebrow: "远程交付 · 建站 / 部署 / 运维",
+        hero_h1: "不会部署？不会上线？<br />我帮你从 0 做到能访问。",
+        hero_lead: "擅长：云服务器 / VPS 部署 · AI 快速开发落地页与小工具 · 域名 HTTPS · 基础运维。你提供想法和资料，我负责做成<strong style=\"color:#fff\">线上可打开、可交付</strong>的结果。",
+        hero_btn_pricing: "查看套餐与价格",
+        hero_btn_contact: "TG / 邮件咨询（24h 内回复）",
+        chip1: "远程交付",
+        chip2: "源码可移交",
+        chip3: "含上线部署",
+        chip4: "支持后续维护",
+        hero_card_title: "三档结果导向套餐",
+        stat1_price: "¥499 起",
+        stat1_sub: "体验包 · 1–3 天",
+        stat2_price: "¥1,499",
+        stat2_sub: "标准包 · 最受欢迎",
+        mini1: "个人 / 自由职业 / 小生意获客站",
+        mini2: "小工具 · 表单 · 机器人部署",
+        mini3: "VPS 初始化 · HTTPS · 备份运维",
+        mini4: "范围写清 · 价格先讲明 · 不接灰产",
+        pain_h2: "你是不是正在为这些事浪费时间？",
+        pain_p: "这些问题，正是我的服务范围——少说话，多上线。",
+        pain1_t: "有想法，上不了线",
+        pain1_p: "不会买服务器、配域名、上 HTTPS，方案一直停在草稿里。",
+        pain2_t: "找人做站又贵又慢",
+        pain2_p: "公司报价高、周期长；便宜模板店做完没人管、也部署不好。",
+        pain3_t: "小工具没人做",
+        pain3_p: "机器人、自动化、内部效率页，不值请全职，又找不到靠谱的人。",
+        pain4_t: "网站挂了不知道找谁",
+        pain4_p: "证书过期、访问慢、机器到期迁移——需要有人能排障、能交付。",
+        svc_h2: "服务范围",
+        svc_p: "把「开发 + 服务器上线」一次做完，你拿到的是可访问链接，不是半成品压缩包。",
+        svc1_t: "展示型网站", svc1_1: "个人站、作品页", svc1_2: "产品介绍、活动落地页",
+        svc2_t: "获客小站", svc2_1: "表单线索收集", svc2_2: "预约 / 联系通知",
+        svc3_t: "小工具 & 机器人", svc3_1: "内部效率页、脚本", svc3_2: "Telegram / 通知类机器人",
+        svc4_t: "部署运维", svc4_1: "VPS 初始化、Nginx、HTTPS", svc4_2: "备份、迁移、挂了急救",
+        svc5_t: "技术栈", svc5_1: "云服务器 / Linux / 域名", svc5_2: "AI 辅助快速落地页面与工具",
+        svc6_t: "明确不做", svc6_1: "大型 APP、复杂全站电商", svc6_2: "违法灰产 / 长期驻场",
+        price_h2: "透明套餐 · 按结果付费",
+        price_p: "以下为常见标准价。需求特殊可加项报价。学生 / 首单可备注「首单」，酌情优惠。英文页显示美元约价（≈ ¥7.2），可按约定用 USDT / 人民币结算。",
+        p1_name: "上线体验包",
+        p1_desc: "先有一个能打开的页面，验证想法 / 个人展示。",
+        p1_price: "¥499", p1_price_sub: "≈ $69", p1_cycle: "周期 1–3 天（资料齐全时）",
+        p1_l1: "单页展示站（介绍 + 联系 + 基础排版）",
+        p1_l2: "域名绑定协助（免费或自有域名）",
+        p1_l3: "HTTPS 证书配置",
+        p1_l4: "部署到云服务器 / VPS",
+        p1_l5: "交付访问链接 + 修改说明",
+        p1_l6: "售后：7 天内 Bug 修复（非新需求）",
+        p1_ex: "不含：多页面、后台、支付、复杂动画、SEO 优化包",
+        p1_btn: "选体验包 · 发我文案资料",
+        p2_badge: "最受欢迎",
+        p2_name: "标准获客站",
+        p2_desc: "小生意、个人品牌、需要留资的正经线上门面。",
+        p2_price: "¥1,499", p2_price_sub: "≈ $209", p2_cycle: "周期 3–7 天 · 主推",
+        p2_l1: "最多 5 个页面（首页 / 服务 / 案例 / 关于 / 联系）",
+        p2_l2: "联系表单或线索收集（通知 TG 或邮箱）",
+        p2_l3: "响应式（手机可正常浏览）",
+        p2_l4: "域名 + HTTPS + VPS 部署全流程",
+        p2_l5: "基础 SEO：标题、描述、Sitemap 级配置",
+        p2_l6: "源码移交 + 1 次使用培训",
+        p2_l7: "售后：30 天缺陷修复 + 2 次小改",
+        p2_ex: "可选：加 1 页 +¥150 · 多渠道通知 +¥100 · 简易统计 +¥200",
+        p2_btn: "选标准包 · 主推",
+        p3_name: "年度护航",
+        p3_desc: "要稳定在线、偶尔改、不想自己折腾服务器。",
+        p3_price: "¥3,499 <small>/ 年起</small>", p3_price_sub: "≈ $489 / year+",
+        p3_cycle: "含标准交付或接入已有站 · 详询",
+        p3_l1: "含「标准获客站」全套交付（或折算接入维护）",
+        p3_l2: "12 个月监控存活 + 每月备份",
+        p3_l3: "SSL 续期协助、基础安全更新",
+        p3_l4: "每月 2 次小改版额度",
+        p3_l5: "工作日 24–48h 内故障响应",
+        p3_l6: "季度 1 次简单优化建议",
+        p3_ex: "不含大型改版与全新功能（可另报价）。云主机费实报实销。",
+        p3_btn: "选年度护航 · 省心",
+        add_h2: "加项价目", add_p: "已有代码 / 只修不建 / 机器人等，按项计价。",
+        th_item: "加项", th_price: "参考价", th_note: "说明",
+        a1: "仅服务器部署（已有代码）", a1p: "¥200–600", a1n: "上线跑通 + HTTPS",
+        a2: "网站迁移 / 换机", a2p: "¥200–800", a2n: "含基础验证访问",
+        a3: "挂了急救（排障恢复）", a3p: "¥100–500", a3n: "按复杂度",
+        a4: "Telegram 通知机器人", a4p: "¥300–1,500", a4n: "需求确认后报价",
+        a5: "简单自动化脚本", a5p: "¥500 起", a5n: "按目标与接口",
+        a6: "加急 48h 交付", a6p: "+30%", a6n: "视档期",
+        a7: "额外设计感定制 UI", a7p: "+30%–80%", a7n: "非模板级视觉",
+        cmp_h2: "三套餐对比",
+        cmp_c1: "体验包 ¥499", cmp_c2: "标准包 ¥1,499", cmp_c3: "年度护航 ¥3,499",
+        cmp_r1: "页面规模", cmp_r1a: "1 页", cmp_r1b: "最多 5 页", cmp_r1c: "同标准 / 接入已有站",
+        cmp_r2: "表单留资", cmp_r3: "域名 + HTTPS + 部署", cmp_r4: "源码移交",
+        cmp_r5: "售后", cmp_r5a: "7 天", cmp_r5b: "30 天 + 2 次小改", cmp_r5c: "12 个月 + 月 2 次小改",
+        cmp_r6: "备份 / 监控", cmp_r6b: "基础说明", cmp_r6c: "✓ 含",
+        cmp_r7: "推荐人群", cmp_r7a: "试水 / 个人页", cmp_r7b: "大多数客户", cmp_r7c: "要省心长期在线",
+        cmp_note: "主推：默认选标准包；预算紧用体验包；怕挂站升年度护航。",
+        proc_h2: "怎么合作（4 步）",
+        proc_p: "资料越齐（文案、logo、图片、联系方式），交付越快。",
+        proc1_t: "沟通需求", proc1_p: "Telegram 或邮件说明要什么，我回复能否做、哪一档、多久。",
+        proc2_t: "定金启动", proc2_p: "标准：定金 50%，验收尾款 50%。体验包可全款。",
+        proc3_t: "制作预览", proc3_p: "给你预览链接，改文案与图片，范围外先报价再改。",
+        proc4_t: "上线交付", proc4_p: "域名生效、源码 / 文档移交，售后计时开始。",
+        cases_h2: "演示案例",
+        cases_p: "真实客户案例将持续更新。本页本身可作为交付风格示意。",
+        case1_t: "案例 A · 本地服务展示站（Demo）",
+        case1_p: "类型：单页 + 联系引流<br />周期：约 2 天<br />链接：本页即 Demo 结构示意",
+        case2_t: "案例 B · 线索收集站（Demo）",
+        case2_p: "类型：服务介绍 + 表单留资结构<br />周期：约 3 天<br />说明：标准获客站页面骨架（可按业务改文案）",
+        about_h2: "为什么找我",
+        about_p: "不是大公司报价流水线，而是能独立完成「开发 + 服务器上线」的远程协作者。",
+        about_l1: "熟练搭建与管理云服务器 / VPS",
+        about_l2: "AI 辅助快速实现页面与小工具",
+        about_l3: "熟悉域名、HTTPS、基础网络与部署排障",
+        about_l4: "范围写清楚、价格先讲明、能做再说能做",
+        about_who_t: "服务对象",
+        about_who_p: "个体户、出海 / 远程协作、内容创作者、学生创业、小型团队。",
+        about_terms_t: "合作须知",
+        about_t1: "体验包可全款；标准 / 年度定金 50%",
+        about_t2: "超出范围先报价再改",
+        about_t3: "云主机、域名、付费 API 默认客户自付",
+        about_t4: "不承接违法违规业务",
+        faq_h2: "常见问题",
+        faq1_q: "我没有服务器和域名怎么办？",
+        faq1_a: "可以。我协助注册 / 绑定；服务器可用低价云主机，费用你自付或代购实报实销。",
+        faq2_q: "会不会用模板随便套？",
+        faq2_a: "会用高效方案快速交付，但按你的文案与结构定制；需要独特设计可加项。",
+        faq3_q: "源码给我吗？",
+        faq3_a: "全款后源码与部署说明移交，你可自由处置。",
+        faq4_q: "为什么比某宝便宜店贵，又比代理公司便宜？",
+        faq4_a: "比「只交模板不负责上线」更完整；比「公司团队报价」更轻。你为的是可访问的结果 + 可维护。",
+        faq5_q: "能开发 App / 商城 / 很复杂的系统吗？",
+        faq5_a: "复杂项目可评估拆阶段；不适合的会直接说不做，避免烂尾。",
+        faq6_q: "只要维护、不要新建可以吗？",
+        faq6_a: "可以。已有网站可只买运维 / 急救 / 迁移，按加项或另报价。",
+        faq7_q: "怎么付款？支持发票吗？",
+        faq7_a: "海外优先 USDT；国内可用支付宝。如需发票请下单前说明。",
+        cta_h2: "准备好上线了吗？",
+        cta_p: "发我这 4 样，我就能报档期与套餐。咨询免费；不合适会直说。",
+        cta_c1: "你是谁 / 做什么的",
+        cta_c2: "要网站还是工具 / 机器人",
+        cta_c3: "有没有域名和服务器",
+        cta_c4: "希望多久上线",
+        cta_tg: "Telegram 咨询",
+        cta_mail: "发邮件询盘",
+        cta_note: "工作时间：每天 20:00 前询盘，一般 24h 内回复。当前档期：本周还可接 2 单。收款：支付宝 / 可协商 USDT。",
+        foot_tag: "远程技术服务",
+        foot_legal: "本站仅提供合法合规的网站与部署服务",
+        mail_subject: "建站咨询",
+        mail_body: "1）用途：\n2）域名/服务器：\n3）期望上线时间：\n4）预算：499 / 1499 / 3499 / 待定"
+      }
+    };
+
+    function applyLang(lang) {
+      const dict = I18N[lang] || I18N.en;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = dict.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", dict.desc);
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] != null) el.textContent = dict[key];
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-html");
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const mail = document.getElementById("mail-btn");
+      if (mail) {
+        const q = new URLSearchParams({
+          subject: dict.mail_subject,
+          body: dict.mail_body
+        });
+        mail.href = "mailto:littlego@keyouhow987.ccwu.cc?" + q.toString();
+        mail.textContent = dict.cta_mail;
+      }
+
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      document.getElementById("btn-zh").classList.toggle("active", lang === "zh");
+      localStorage.setItem("csw_lang", lang);
+    }
+
+    function preferLang() {
+      const saved = localStorage.getItem("csw_lang");
+      if (saved === "en" || saved === "zh") return saved;
+      // International-first: default EN unless browser is clearly Chinese
+      const nav = (navigator.language || "").toLowerCase();
+      if (nav.startsWith("zh")) return "zh";
+      return "en";
+    }
+
+    document.getElementById("btn-en").addEventListener("click", () => applyLang("en"));
+    document.getElementById("btn-zh").addEventListener("click", () => applyLang("zh"));
+    applyLang(preferLang());
   </script>
 </body>
 </html>
