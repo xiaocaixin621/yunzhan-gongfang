@@ -39,13 +39,26 @@
 open "/Users/mac/Downloads/自制项目/接单服务站/index.html"
 ```
 
+## 视频资源库
+
+| 路径 | 说明 |
+|------|------|
+| [`videos/`](videos/) | 列表 + 各集说明页 |
+| [`videos/maradona-scan-portrait.html`](videos/maradona-scan-portrait.html) | 致敬马拉多纳 · 扫描写生 |
+| [`downloads/draw_maradona.py`](downloads/draw_maradona.py) | 源码下载 |
+
+- 说明页：https://store.weareworld.ccwu.cc/videos/maradona-scan-portrait.html  
+- 同步：https://shop.weareworld.ccwu.cc/videos/maradona-scan-portrait.html  
+- YouTube：https://www.youtube.com/watch?v=5_MgumPbbiM  
+
 ## 双平台部署
 
 | 平台 | 地址 | 说明 |
 |------|------|------|
-| **Cloudflare Pages** | https://yunzhan-gongfang.pages.dev/ | 本次 CLI 直推；可选自定义域名 |
-| **GitHub Pages** | https://xiaocaixin621.github.io/yunzhan-gongfang/ · https://shop.weareworld.ccwu.cc/ | Actions 自动部署 |
+| **Cloudflare Pages** | https://yunzhan-gongfang.pages.dev/ · **https://store.weareworld.ccwu.cc/** | CF 自定义子域 `store` |
+| **GitHub Pages** | https://xiaocaixin621.github.io/yunzhan-gongfang/ · **https://shop.weareworld.ccwu.cc/** | GH 自定义子域 `shop` |
 
+两子域互不影响：`shop` → GitHub，`store` → Cloudflare。
 本地再推 Cloudflare：
 
 ```bash

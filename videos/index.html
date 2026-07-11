@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="视频说明资源库：YouTube 编程艺术 / 生成式动画配套笔记与源码下载。CloudStack Workshop · New World." />
+  <title>视频资源库 · Videos | CloudStack Workshop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap-wide nav-inner">
+      <a class="logo" href="../">
+        <span class="logo-mark">CS</span>
+        <span>CloudStack Workshop</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../">接单主页</a>
+        <a href="./">视频库</a>
+        <a class="btn btn-primary btn-sm" href="../#contact">咨询</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap-wide">
+        <div class="eyebrow">Video Notes · 资源库</div>
+        <h1>视频说明与源码分享</h1>
+        <p>
+          YouTube 视频的配套说明页集中在这里：原理拆解、运行方式、可下载源码。
+          日积月累形成开放学习资源；需要建站 / 部署服务请回到接单主页。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap-wide video-grid">
+        <article class="card video-card">
+          <a class="cover" href="maradona-scan-portrait.html">
+            <img src="assets/maradona-preview.jpg" alt="致敬马拉多纳 · 扫描写生预览" width="960" height="600" loading="lazy" />
+          </a>
+          <div class="body">
+            <div class="meta">2025–2026 · Python · Pillow · FFmpeg</div>
+            <h2><a href="maradona-scan-portrait.html">致敬马拉多纳 · 扫描写生动画</a></h2>
+            <p>
+              以纯 Python 完成「扫描写生」：横/纵扫描逐步显现肖像，书法题匾「致敬马拉多纳」渐进落成。
+              提供 <code class="inline-code">draw_maradona.py</code> 下载与运行说明。
+            </p>
+            <div class="tags">
+              <span class="tag">YouTube</span>
+              <span class="tag">生成式艺术</span>
+              <span class="tag">开源学习</span>
+            </div>
+            <p style="margin-top:0.9rem">
+              <a class="btn btn-primary btn-sm" href="maradona-scan-portrait.html">阅读说明</a>
+              <a class="btn btn-ghost btn-sm" href="../downloads/draw_maradona.py" download>下载源码</a>
+            </p>
+          </div>
+        </article>
+
+        <!-- 后续视频说明卡片复制此结构追加 -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap-wide foot">
+      <div>© <span id="y"></span> CloudStack Workshop · Video notes</div>
+      <div><a href="../">返回接单主页</a></div>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

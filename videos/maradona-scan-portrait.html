@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="致敬马拉多纳：Python 扫描写生动画说明。横纵扫描显现肖像，书法题匾渐进落成。源码 draw_maradona.py 可下载学习。" />
+  <title>致敬马拉多纳 · 扫描写生 | 视频说明</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="../">
+        <span class="logo-mark">CS</span>
+        <span>CloudStack Workshop</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../">接单主页</a>
+        <a href="./">视频库</a>
+        <a href="../downloads/draw_maradona.py" download>下载源码</a>
+        <a class="btn btn-primary btn-sm" href="../#contact">咨询</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article">
+    <div class="wrap">
+      <div class="eyebrow">Episode 01 · Generative Art</div>
+      <h1>致敬马拉多纳 · Life is Life<br />Python「扫描写生」动画说明</h1>
+      <p class="lead">
+        以 Python 纯代码完成「扫描写生」：从空白画布出发，经横向 / 纵向扫描逐步显现肖像，
+        书法题匾「致敬马拉多纳」渐进落成。本页对应 YouTube 成片，并开放
+        <strong>draw_maradona.py</strong> 供爱好者下载学习。
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=5_MgumPbbiM" target="_blank" rel="noopener">在 YouTube 观看</a>
+        <a class="btn btn-ghost" href="../downloads/draw_maradona.py" download>下载 draw_maradona.py</a>
+        <a class="btn btn-ghost" href="./">← 返回视频库</a>
+      </div>
+
+      <div class="meta">时长约 4 分钟 · 工具：Python · Pillow · FFmpeg · 配乐：Life is Life（Opus）</div>
+
+      <div class="embed">
+        <iframe
+          src="https://www.youtube.com/embed/5_MgumPbbiM"
+          title="致敬马拉多纳 · Life is Life · 扫描写生"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="prose">
+        <h2>作品在做什么</h2>
+        <p>
+          这不是传统手绘录屏，而是用程序控制「画布如何被填满」：
+          原图像素按扫描条带（横条 / 纵条）逐步粘贴到画布上，观众看到的是
+          <strong>从无到有的写生过程</strong>，最终锁定为高清肖像，并配合书法题匾动画。
+        </p>
+
+        <img class="preview" src="assets/maradona-preview.jpg" alt="马拉多纳扫描写生结果预览" width="960" height="720" />
+        <p class="caption">预览图：成片终点效果示意（本地项目导出）。</p>
+
+        <h2>技术要点（对照源码）</h2>
+        <ul>
+          <li><strong>扫描操作队列</strong>：横条 <code>("h", y0, y1)</code>、纵条 <code>("v", x0, x1)</code> 等 Op 序列驱动动画时间轴。</li>
+          <li><strong>呈现时长</strong>：整场默认约 240s 量级，与墙钟 / 配乐对齐，避免拖沓。</li>
+          <li><strong>书法题匾</strong>：使用项目内字体（如 <code>fonts/MaShanZheng-Regular.ttf</code>）绘制「致敬马拉多纳」并渐进落成。</li>
+          <li><strong>导出视频</strong>：可导出帧序列与 <code>maradona.mp4</code>（依赖 FFmpeg；含配乐时注意版权）。</li>
+          <li><strong>虚拟环境</strong>：脚本会检查项目 <code>.venv</code>，避免误用全局 Python 缺依赖。</li>
+        </ul>
+
+        <h2>下载与运行（学习用）</h2>
+        <p>
+          本站提供核心脚本下载：
+          <a href="../downloads/draw_maradona.py" download><strong>draw_maradona.py</strong></a>
+          （约 1300 行）。完整复现还需要你本地准备：
+        </p>
+        <ul>
+          <li>Python 3.10+ 与虚拟环境</li>
+          <li><code>Pillow</code>（以及脚本用到的其它依赖，按报错补齐）</li>
+          <li>源图（默认同目录 <code>Maradona.jpg</code>）</li>
+          <li>可选：书法字体、配乐 <code>life_is_life.mp3</code>、FFmpeg（导出 mp4）</li>
+        </ul>
+
+        <div class="note-box">
+          <strong>版权与合规：</strong>
+          本说明页与源码分享用于学习与致敬表达。马拉多纳肖像与「Life is Life」等配乐可能涉及肖像权 / 版权与 YouTube Content ID；
+          公开传播、商用或重新上传前请自行评估授权。学习请尊重球王与创作者权利。
+        </div>
+
+        <h3>建议的最小运行方式</h3>
+        <pre><code># 1) 创建虚拟环境并安装依赖
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install pillow
+
+# 2) 准备目录（示例）
+mkdir -p Maradona/fonts
+# 将 draw_maradona.py 与 Maradona.jpg 放入 Maradona/
+# 可选：书法字体放到 Maradona/fonts/
+
+# 3) 在「项目根」运行（脚本会校验 .venv）
+# 注意：源码里 PROJECT_ROOT 默认为脚本父目录的上一级
+python Maradona/draw_maradona.py
+
+# 导出视频（需本机 FFmpeg 等，见脚本帮助）
+python Maradona/draw_maradona.py --export-mp4
+</code></pre>
+
+        <p>
+          若你从本站单独下载了 <code>draw_maradona.py</code>，请打开文件顶部注释，按其中的
+          <code>HERE</code> / <code>PROJECT_ROOT</code> / 路径约定放置资源，或按你的目录结构小幅修改路径常量。
+        </p>
+
+        <h2>你能学到什么</h2>
+        <ul>
+          <li>用操作队列做「时间轴动画」而不是逐像素手动画线</li>
+          <li>Pillow 图像合成、字体绘制、帧导出思路</li>
+          <li>程序艺术（Generative / Procedural Art）的可复现工程化组织</li>
+        </ul>
+
+        <h2>相关链接</h2>
+        <ul>
+          <li>YouTube：<a href="https://www.youtube.com/watch?v=5_MgumPbbiM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5_MgumPbbiM</a></li>
+          <li>源码下载：<a href="../downloads/draw_maradona.py" download>draw_maradona.py</a></li>
+          <li>视频库首页：<a href="./">/videos/</a></li>
+          <li>接单 / 部署服务：<a href="../">站点首页</a></li>
+        </ul>
+
+        <div class="actions" style="margin-top:1.6rem">
+          <a class="btn btn-primary" href="../downloads/draw_maradona.py" download>下载 draw_maradona.py</a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=5_MgumPbbiM" target="_blank" rel="noopener">打开 YouTube</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> CloudStack Workshop · 致敬 · 学习分享</div>
+      <div><a href="./">视频库</a> · <a href="../">主页</a></div>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
