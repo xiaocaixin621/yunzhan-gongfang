@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="远程建站与 VPS 部署服务：3–7 天帮你上线网站、小工具与基础运维。透明套餐，源码可移交。" />
+  <title>云栈工坊 · 建站与部署接单</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #121a2b;
+      --card: #162033;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #e8eefc;
+      --muted: #9aa8c7;
+      --brand: #5b8cff;
+      --brand-2: #37d6c5;
+      --accent: #f5c542;
+      --ok: #3dd68c;
+      --radius: 16px;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(91, 140, 255, 0.22), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(55, 214, 197, 0.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 18, 32, 0.75);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #061018;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.75rem 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), #7aa4ff);
+      color: #07101f;
+      box-shadow: 0 10px 30px rgba(91, 140, 255, 0.28);
+    }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .btn-sm { padding: 0.55rem 0.95rem; font-size: 0.9rem; }
+    .btn-block { width: 100%; }
+
+    .hero { padding: 4.2rem 0 2.5rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(91, 140, 255, 0.12);
+      color: #b9ccff;
+      font-size: 0.85rem;
+      border: 1px solid rgba(91, 140, 255, 0.25);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 40rem;
+      margin: 0 0 1.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .chip {
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+    }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .hero-card h3 { margin: 0 0 0.8rem; font-size: 1rem; }
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .stat {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.85rem;
+    }
+    .stat b { display: block; font-size: 1.2rem; margin-bottom: 0.15rem; }
+    .stat span { color: var(--muted); font-size: 0.82rem; }
+    .mini-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .mini-list li {
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .mini-list li:last-child { border-bottom: 0; }
+    .dot-ok::before {
+      content: "✓";
+      color: var(--ok);
+      font-weight: 800;
+    }
+
+    section { padding: 3.2rem 0; }
+    .section-head { margin-bottom: 1.5rem; }
+    .section-head h2 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      letter-spacing: -0.02em;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.25rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+    .card h3 { margin: 0 0 0.55rem; font-size: 1.05rem; }
+    .card p, .card li { color: var(--muted); font-size: 0.95rem; }
+    .card ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+
+    .pain-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .pain-item .n {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 123, 123, 0.12);
+      color: #ffb4b4;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .price-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .price-card.featured {
+      border-color: rgba(91, 140, 255, 0.55);
+      background: linear-gradient(180deg, rgba(91, 140, 255, 0.12), rgba(22, 32, 51, 0.95));
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(91, 140, 255, 0.15);
+    }
+    .badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #07101f;
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+    }
+    .price-card .name { margin: 0; font-size: 1.1rem; }
+    .price-card .desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0.35rem 0 0.9rem;
+      min-height: 2.8em;
+    }
+    .price {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.2rem;
+    }
+    .price small {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .price-card .cycle {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .price-card ul {
+      margin: 0 0 1.2rem;
+      padding: 0;
+      list-style: none;
+      flex: 1;
+    }
+    .price-card li {
+      position: relative;
+      padding: 0.4rem 0 0.4rem 1.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.06);
+    }
+    .price-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--ok);
+      font-weight: 800;
+    }
+    .price-card .exclude {
+      color: #9aa8c7;
+      font-size: 0.82rem;
+      margin: 0 0 1rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th { color: var(--text); background: rgba(255,255,255,0.03); }
+    td { color: var(--muted); }
+    tr:last-child td { border-bottom: 0; }
+    .center { text-align: center; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+    }
+    .step {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+    }
+    .step .num {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      background: rgba(55, 214, 197, 0.14);
+      color: #8ff0e4;
+      margin-bottom: 0.7rem;
+    }
+    .step h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    details.faq {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.7rem;
+    }
+    details.faq summary {
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq p {
+      margin: 0.7rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, rgba(91, 140, 255, 0.18), rgba(55, 214, 197, 0.1));
+      border: 1px solid rgba(91, 140, 255, 0.28);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+    }
+    .cta h2 { margin: 0 0 0.6rem; }
+    .cta p { margin: 0 auto 1rem; color: var(--muted); max-width: 36rem; }
+    .contact-big {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin: 1rem 0 0.5rem;
+    }
+    .contact-pill {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.95rem;
+    }
+    .contact-pill strong { color: var(--brand-2); }
+    .checklist {
+      text-align: left;
+      max-width: 28rem;
+      margin: 1rem auto 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .checklist li { margin: 0.25rem 0; }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--line);
+      margin-top: 1rem;
+    }
+    footer .foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-2,
+      .price-grid,
+      .steps,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .price-card.featured { transform: none; }
+      .nav-links .hide-sm { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 搜索 REPLACE_ 换成你的真实联系方式 -->
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top">
+        <span class="logo-mark">云</span>
+        <span>云栈工坊</span>
+      </a>
+      <nav class="nav-links">
+        <a class="hide-sm" href="#pain">痛点</a>
+        <a class="hide-sm" href="#services">服务</a>
+        <a href="#pricing">套餐</a>
+        <a class="hide-sm" href="#process">流程</a>
+        <a class="hide-sm" href="#faq">FAQ</a>
+        <a class="btn btn-primary btn-sm" href="#contact">立即咨询</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">远程交付 · 建站 / 部署 / 运维</div>
+          <h1>不会部署？不会上线？<br />我帮你从 0 做到能访问。</h1>
+          <p class="lead">
+            擅长：云服务器 / VPS 部署 · AI 快速开发落地页与小工具 · 域名 HTTPS · 基础运维。
+            你提供想法和资料，我负责做成<strong style="color:#fff">线上可打开、可交付</strong>的结果。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#pricing">查看套餐与价格</a>
+            <a class="btn btn-ghost" href="#contact">TG / 邮件咨询（24h 内回复）</a>
+          </div>
+          <div class="trust">
+            <span class="chip">远程交付</span>
+            <span class="chip">源码可移交</span>
+            <span class="chip">含上线部署</span>
+            <span class="chip">支持后续维护</span>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h3>三档结果导向套餐</h3>
+          <div class="stat-row">
+            <div class="stat">
+              <b>¥499 起</b>
+              <span>体验包 · 1–3 天</span>
+            </div>
+            <div class="stat">
+              <b>¥1,499</b>
+              <span>标准包 · 最受欢迎</span>
+            </div>
+          </div>
+          <ul class="mini-list">
+            <li class="dot-ok">个人 / 工作室 / 小生意获客站</li>
+            <li class="dot-ok">小工具 · 表单 · 机器人部署</li>
+            <li class="dot-ok">VPS 初始化 · HTTPS · 备份运维</li>
+            <li class="dot-ok">范围写清 · 价格先讲明 · 不接灰产</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="pain">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>你是不是正在为这些事浪费时间？</h2>
+          <p>这些问题，正是我的服务范围——少说话，多上线。</p>
+        </div>
+        <div class="grid-2">
+          <div class="card pain-item">
+            <div class="n">1</div>
+            <div>
+              <h3>有想法，上不了线</h3>
+              <p>不会买服务器、配域名、上 HTTPS，方案一直停在草稿里。</p>
+            </div>
+          </div>
+          <div class="card pain-item">
+            <div class="n">2</div>
+            <div>
+              <h3>找人做站又贵又慢</h3>
+              <p>公司报价高、周期长；便宜模板店做完没人管、也部署不好。</p>
+            </div>
+          </div>
+          <div class="card pain-item">
+            <div class="n">3</div>
+            <div>
+              <h3>小工具没人做</h3>
+              <p>机器人、自动化、内部效率页，不值请全职，又找不到靠谱的人。</p>
+            </div>
+          </div>
+          <div class="card pain-item">
+            <div class="n">4</div>
+            <div>
+              <h3>网站挂了不知道找谁</h3>
+              <p>证书过期、访问慢、机器到期迁移——需要有人能排障、能交付。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>服务范围</h2>
+          <p>把「开发 + 服务器上线」一次做完，你拿到的是可访问链接，不是半成品压缩包。</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>展示型网站</h3>
+            <ul>
+              <li>个人站、工作室页</li>
+              <li>产品介绍、活动落地页</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>获客小站</h3>
+            <ul>
+              <li>表单线索收集</li>
+              <li>预约 / 联系通知</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>小工具 & 机器人</h3>
+            <ul>
+              <li>内部效率页、脚本</li>
+              <li>Telegram / 通知类机器人</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>部署运维</h3>
+            <ul>
+              <li>VPS 初始化、Nginx、HTTPS</li>
+              <li>备份、迁移、挂了急救</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>技术栈</h3>
+            <ul>
+              <li>云服务器 / Linux / 域名</li>
+              <li>AI 辅助快速落地页面与工具</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>明确不做</h3>
+            <ul>
+              <li>大型 APP、复杂全站电商</li>
+              <li>棋牌 / 盘方 / 违法灰产 / 长期驻场</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>透明套餐 · 按结果付费</h2>
+          <p>以下为常见标准价。需求特殊可加项报价。学生 / 首单可备注「首单」，酌情优惠。</p>
+        </div>
+
+        <div class="price-grid">
+          <article class="price-card">
+            <h3 class="name">上线体验包</h3>
+            <p class="desc">先有一个能打开的页面，验证想法 / 个人展示。</p>
+            <div class="price">¥499</div>
+            <div class="cycle">周期 1–3 天（资料齐全时）</div>
+            <ul>
+              <li>单页展示站（介绍 + 联系 + 基础排版）</li>
+              <li>域名绑定协助（免费或自有域名）</li>
+              <li>HTTPS 证书配置</li>
+              <li>部署到云服务器 / VPS</li>
+              <li>交付访问链接 + 修改说明</li>
+              <li>售后：7 天内 Bug 修复（非新需求）</li>
+            </ul>
+            <p class="exclude">不含：多页面、后台、支付、复杂动画、SEO 优化包</p>
+            <a class="btn btn-ghost btn-block" href="#contact">选体验包 · 发我文案资料</a>
+          </article>
+
+          <article class="price-card featured">
+            <span class="badge">最受欢迎</span>
+            <h3 class="name">标准获客站</h3>
+            <p class="desc">小生意、个人品牌、需要留资的正经线上门面。</p>
+            <div class="price">¥1,499</div>
+            <div class="cycle">周期 3–7 天 · 主推</div>
+            <ul>
+              <li>最多 5 个页面（首页 / 服务 / 案例 / 关于 / 联系）</li>
+              <li>联系表单或线索收集（通知 TG 或邮箱）</li>
+              <li>响应式（手机可正常浏览）</li>
+              <li>域名 + HTTPS + VPS 部署全流程</li>
+              <li>基础 SEO：标题、描述、Sitemap 级配置</li>
+              <li>源码移交 + 1 次使用培训</li>
+              <li>售后：30 天缺陷修复 + 2 次小改</li>
+            </ul>
+            <p class="exclude">可选：加 1 页 +¥150 · 多渠道通知 +¥100 · 简易统计 +¥200</p>
+            <a class="btn btn-primary btn-block" href="#contact">选标准包 · 主推</a>
+          </article>
+
+          <article class="price-card">
+            <h3 class="name">年度护航</h3>
+            <p class="desc">要稳定在线、偶尔改、不想自己折腾服务器。</p>
+            <div class="price">¥3,499 <small>/ 年起</small></div>
+            <div class="cycle">含标准交付或接入已有站 · 详询</div>
+            <ul>
+              <li>含「标准获客站」全套交付（或折算接入维护）</li>
+              <li>12 个月监控存活 + 每月备份</li>
+              <li>SSL 续期协助、基础安全更新</li>
+              <li>每月 2 次小改版额度</li>
+              <li>工作日 24–48h 内故障响应</li>
+              <li>季度 1 次简单优化建议</li>
+            </ul>
+            <p class="exclude">不含大型改版与全新功能（可另报价）。云主机费实报实销。</p>
+            <a class="btn btn-ghost btn-block" href="#contact">选年度护航 · 省心</a>
+          </article>
+        </div>
+
+        <div class="section-head" style="margin-top:2.2rem">
+          <h2>加项价目</h2>
+          <p>已有代码 / 只修不建 / 机器人等，按项计价。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>加项</th>
+                <th>参考价</th>
+                <th>说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>仅服务器部署（已有代码）</td>
+                <td>¥200–600</td>
+                <td>上线跑通 + HTTPS</td>
+              </tr>
+              <tr>
+                <td>网站迁移 / 换机</td>
+                <td>¥200–800</td>
+                <td>含基础验证访问</td>
+              </tr>
+              <tr>
+                <td>挂了急救（排障恢复）</td>
+                <td>¥100–500</td>
+                <td>按复杂度</td>
+              </tr>
+              <tr>
+                <td>Telegram 通知机器人</td>
+                <td>¥300–1,500</td>
+                <td>需求确认后报价</td>
+              </tr>
+              <tr>
+                <td>简单自动化脚本</td>
+                <td>¥500 起</td>
+                <td>按目标与接口</td>
+              </tr>
+              <tr>
+                <td>加急 48h 交付</td>
+                <td>+30%</td>
+                <td>视档期</td>
+              </tr>
+              <tr>
+                <td>额外设计感定制 UI</td>
+                <td>+30%–80%</td>
+                <td>非模板级视觉</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-head" style="margin-top:2.2rem">
+          <h2>三套餐对比</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th class="center">体验包 ¥499</th>
+                <th class="center">标准包 ¥1,499</th>
+                <th class="center">年度护航 ¥3,499</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>页面规模</td>
+                <td class="center">1 页</td>
+                <td class="center">最多 5 页</td>
+                <td class="center">同标准 / 接入已有站</td>
+              </tr>
+              <tr>
+                <td>表单留资</td>
+                <td class="center">—</td>
+                <td class="center">✓</td>
+                <td class="center">✓</td>
+              </tr>
+              <tr>
+                <td>域名 + HTTPS + 部署</td>
+                <td class="center">✓</td>
+                <td class="center">✓</td>
+                <td class="center">✓</td>
+              </tr>
+              <tr>
+                <td>源码移交</td>
+                <td class="center">✓</td>
+                <td class="center">✓</td>
+                <td class="center">✓</td>
+              </tr>
+              <tr>
+                <td>售后</td>
+                <td class="center">7 天</td>
+                <td class="center">30 天 + 2 次小改</td>
+                <td class="center">12 个月 + 月 2 次小改</td>
+              </tr>
+              <tr>
+                <td>备份 / 监控</td>
+                <td class="center">—</td>
+                <td class="center">基础说明</td>
+                <td class="center">✓ 含</td>
+              </tr>
+              <tr>
+                <td>推荐人群</td>
+                <td class="center">试水 / 个人页</td>
+                <td class="center"><strong style="color:#fff">大多数客户</strong></td>
+                <td class="center">要省心长期在线</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">主推：默认选标准包；预算紧用体验包；怕挂站升年度护航。</p>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>怎么合作（4 步）</h2>
+          <p>资料越齐（文案、logo、图片、联系方式），交付越快。</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h3>沟通需求</h3>
+            <p>Telegram 或邮件说明要什么，我回复能否做、哪一档、多久。</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h3>定金启动</h3>
+            <p>标准：定金 50%，验收尾款 50%。体验包可全款。</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h3>制作预览</h3>
+            <p>给你预览链接，改文案与图片，范围外先报价再改。</p>
+          </div>
+          <div class="step">
+            <div class="num">4</div>
+            <h3>上线交付</h3>
+            <p>域名生效、源码 / 文档移交，售后计时开始。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>演示案例</h2>
+          <p>真实客户案例将持续更新。本页本身可作为交付风格示意。</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>案例 A · 本地服务展示站（Demo）</h3>
+            <p>类型：单页 + 电话 / 微信引流<br />周期：约 2 天<br />链接：本页即 Demo 结构示意</p>
+          </div>
+          <div class="card">
+            <h3>案例 B · 线索收集站（Demo）</h3>
+            <p>类型：服务介绍 + 表单留资结构<br />周期：约 3 天<br />说明：标准获客站页面骨架（可按业务改文案）</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>为什么找我</h2>
+          <p>不是大公司报价流水线，而是能独立完成「开发 + 服务器上线」的远程协作者。</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <ul>
+              <li>熟练搭建与管理云服务器 / VPS</li>
+              <li>AI 辅助快速实现页面与小工具</li>
+              <li>熟悉域名、HTTPS、基础网络与部署排障</li>
+              <li>范围写清楚、价格先讲明、能做再说能做</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>服务对象</h3>
+            <p>个体户、出海 / 远程协作、内容创作者、学生创业、小型团队。</p>
+            <h3 style="margin-top:1rem">合作须知</h3>
+            <ul>
+              <li>体验包可全款；标准 / 年度定金 50%</li>
+              <li>超出范围先报价再改</li>
+              <li>云主机、域名、付费 API 默认客户自付</li>
+              <li>不承接违法违规业务</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>常见问题</h2>
+        </div>
+        <details class="faq">
+          <summary>我没有服务器和域名怎么办？</summary>
+          <p>可以。我协助注册 / 绑定；服务器可用低价云主机，费用你自付或代购实报实销。</p>
+        </details>
+        <details class="faq">
+          <summary>会不会用模板随便套？</summary>
+          <p>会用高效方案快速交付，但按你的文案与结构定制；需要独特设计可加项。</p>
+        </details>
+        <details class="faq">
+          <summary>源码给我吗？</summary>
+          <p>全款后源码与部署说明移交，你可自由处置。</p>
+        </details>
+        <details class="faq">
+          <summary>为什么比某宝便宜店贵，又比代理公司便宜？</summary>
+          <p>比「只交模板不负责上线」更完整；比「公司团队报价」更轻。你为的是可访问的结果 + 可维护。</p>
+        </details>
+        <details class="faq">
+          <summary>能开发 App / 商城 / 很复杂的系统吗？</summary>
+          <p>复杂项目可评估拆阶段；不适合的会直接说不做，避免烂尾。</p>
+        </details>
+        <details class="faq">
+          <summary>只要维护、不要新建可以吗？</summary>
+          <p>可以。已有网站可只买运维 / 急救 / 迁移，按加项或另报价。</p>
+        </details>
+        <details class="faq">
+          <summary>支持发票吗？</summary>
+          <p>个人服务可提供收款凭证；如需发票请下单前说明。</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="cta">
+          <h2>准备好上线了吗？</h2>
+          <p>发我这 4 样，我就能报档期与套餐。咨询免费；不合适会直说。</p>
+          <ol class="checklist">
+            <li>你是谁 / 做什么的</li>
+            <li>要网站还是工具 / 机器人</li>
+            <li>有没有域名和服务器</li>
+            <li>希望多久上线</li>
+          </ol>
+
+          <div class="contact-big">
+            <div class="contact-pill">Telegram：<strong><a href="https://t.me/bill2wang" style="color:inherit;text-decoration:none">@bill2wang</a></strong></div>
+            <div class="contact-pill">邮箱：<strong><a href="mailto:littlego@keyouhow987.ccwu.cc" style="color:inherit;text-decoration:none">littlego@keyouhow987.ccwu.cc</a></strong></div>
+          </div>
+
+          <div class="hero-actions" style="justify-content:center;margin-top:1rem">
+            <a class="btn btn-primary" href="https://t.me/bill2wang">Telegram 咨询</a>
+            <a class="btn btn-ghost" href="mailto:littlego@keyouhow987.ccwu.cc?subject=建站咨询&body=1）用途：%0A2）域名/服务器：%0A3）期望上线时间：%0A4）预算：499 / 1499 / 3499 / 待定">发邮件询盘</a>
+          </div>
+
+          <p class="note">
+            工作时间：每天 20:00 前询盘，一般 24h 内回复。当前档期：本周还可接 2 单。
+            收款：支付宝，可协商 USDT。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> 云栈工坊 · 远程技术服务</div>
+      <div>本站仅提供合法合规的网站与部署服务</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
