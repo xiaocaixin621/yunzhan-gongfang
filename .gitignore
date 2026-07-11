@@ -1,2 +1,6 @@
-SESSION_HANDOFF.md
+
+*.docx
 .DS_Store
+.wrangler/
+SESSION_HANDOFF.md
+~\$*
