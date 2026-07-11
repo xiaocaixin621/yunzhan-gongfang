@@ -22,9 +22,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+
+      - name: Prepare site files
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          # optional assets if present later
+          [ -f qrcode.png ] && cp qrcode.png _site/ || true
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
         with:
-          path: .
+          enablement: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
       - id: deployment
+        name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
