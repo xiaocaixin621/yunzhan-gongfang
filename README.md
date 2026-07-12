@@ -49,7 +49,7 @@ open "/Users/mac/Downloads/自制项目/接单服务站/index.html"
 
 - 说明页：https://store.weareworld.ccwu.cc/videos/maradona-scan-portrait.html  
 - 同步：https://shop.weareworld.ccwu.cc/videos/maradona-scan-portrait.html  
-- YouTube：https://www.youtube.com/watch?v=5_MgumPbbiM  
+- YouTube：[https://www.youtube.com/watch?v=75VQOWijf4E]  
 
 ## 双平台部署
 
